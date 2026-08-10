@@ -1,0 +1,58 @@
+syntax = "proto3";
+package im;
+
+enum Cmd {
+  CMD_UNKNOWN      = 0;
+  CMD_REGISTER_REQ = 1;   // 新增
+  CMD_REGISTER_RES = 2;   // 新增
+  CMD_LOGIN_REQ    = 3;
+  CMD_LOGIN_RES    = 4;
+  CMD_CHAT_REQ     = 5;
+  CMD_CHAT_RES     = 6;
+  CMD_HEARTBEAT    = 7;
+}
+/*
+    // 注册路由
+        handlers[im::CMD_LOGIN_REQ] = HandleLoginRequest;
+        handlers[im::CMD_CHAT_REQ]  = HandleChatRequest;
+*/
+
+
+message Header {
+  int32  cmd    = 1;  //用于分发事件，服务端根据 cmd 确定将 body 转换为 什么 C++ 对象
+  int64  seq    = 2;  //Sequence ID / 序列号
+  int32  status = 3;  //业务错误码
+}
+
+message Message {
+  Header header = 1; //报头结构
+  bytes  body   = 2; //具体业务对象的二次序列化二进制流
+}
+
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  int32 status = 1;   // 0 成功，非0 失败
+}
+
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int32 status  = 1; //登录结果状态
+  string user_id = 2;   // 成功时返回用户ID（字符串，方便扩展）
+}
+
+
+
+message ChatMessage { //真正的消息内容载体。
+  string sender   = 1; //发送方 user_id
+  string receiver = 2; //接收方 user_id
+  string content  = 3; //消息文本/图片/语音数据的 Base64 编码或 JSON/媒体 URL
+}
