@@ -6,17 +6,21 @@
 #include "user_manager.h"
 #include "message_handler.h"
 #include "database.h"
+#include "redis_wrapper.h"
+#include "msg_manager.h"
 
 int main() {
     try {
         boost::asio::io_context ioc;
         auto work = boost::asio::make_work_guard(ioc);
 
-        // 初始化数据库（根据实际情况修改参数）
-        Database db("127.0.0.1", "root", "159751", "im_db");
+        // 修改为你的 MySQL 参数
+        Database db("localhost", "root", "159751", "im_db");
+        RedisClient redis;
+        MsgManager msgManager(redis);
 
         UserManager userManager;
-        MessageHandler msgHandler(userManager, db);
+        MessageHandler msgHandler(userManager, db, msgManager);
 
         TcpServer server(ioc, 9000, userManager, msgHandler);
         server.Start();

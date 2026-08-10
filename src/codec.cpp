@@ -3,7 +3,7 @@
 #include <cstring>
 
 std::string Codec::Encode(const im::Message& msg) {
-    std::string body = msg.SerializeAsString(); //将 Protobuf 对象序列化为二进制字节流（
+    std::string body = msg.SerializeAsString();
     int32_t netLen = htonl(static_cast<int32_t>(body.size()));
     std::string result;
     result.reserve(4 + body.size());

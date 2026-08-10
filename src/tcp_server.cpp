@@ -14,13 +14,11 @@ void TcpServer::Start() {
 }
 
 void TcpServer::DoAccept() {
-    acceptor_.async_accept(   
+    acceptor_.async_accept(
         [this](boost::system::error_code ec, boost::asio::ip::tcp::socket socket) {
             if (!ec) {
-                // 每个连接交由 Connection 管理
-                std::make_shared<Connection>(std::move(socket), userManager_, msgHandler_)
-                    ->Start();
+                std::make_shared<Connection>(std::move(socket), userManager_, msgHandler_)->Start();
             }
-            DoAccept(); // 继续接受下一个
+            DoAccept();
         });
 }

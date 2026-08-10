@@ -1,7 +1,6 @@
 #include "database.h"
 #include <stdexcept>
 #include <cstring>
-#include <iostream>
 
 Database::Database(const std::string& host, const std::string& user,
                    const std::string& pass, const std::string& db, int port) {
@@ -22,7 +21,6 @@ Database::~Database() {
 }
 
 int Database::RegisterUser(const std::string& username, const std::string& password_hash, const std::string& salt) {
-    // 检查用户名是否已存在
     MYSQL_STMT* stmt = mysql_stmt_init(conn_);
     if (!stmt) return -2;
 
@@ -51,9 +49,8 @@ int Database::RegisterUser(const std::string& username, const std::string& passw
     mysql_stmt_free_result(stmt);
     mysql_stmt_close(stmt);
 
-    if (cnt > 0) return -1; // 用户名重复
+    if (cnt > 0) return -1;
 
-    // 插入新用户
     stmt = mysql_stmt_init(conn_);
     const char* insert_sql = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
     if (mysql_stmt_prepare(stmt, insert_sql, strlen(insert_sql))) {

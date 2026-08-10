@@ -7,8 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(Protobuf REQUIRED)
 find_package(OpenSSL REQUIRED)
-
-# MySQL 通常使用 pkg-config
+find_package(redis++ REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(MYSQL REQUIRED IMPORTED_TARGET mysqlclient)
 
@@ -25,6 +24,8 @@ set(SOURCES
     src/user_manager.cpp
     src/message_handler.cpp
     src/database.cpp
+    src/redis_wrapper.cpp
+    src/msg_manager.cpp
     ${PROTO_SRCS}
 )
 
@@ -34,5 +35,7 @@ target_link_libraries(im_server
     protobuf::libprotobuf
     OpenSSL::Crypto
     PkgConfig::MYSQL
+    redis++
+    hiredis
     pthread
 )

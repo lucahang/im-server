@@ -30,7 +30,6 @@ void Connection::Send(const im::Message& msg) {
         sendQueue_.push_back(std::move(data));
         if (!writing_) {
             writing_ = true;
-            // 在 socket 线程中启动写，确保线程安全
             boost::asio::post(socket_.get_executor(),
                 [self = shared_from_this()] { self->DoWrite(); });
         }
@@ -48,7 +47,7 @@ void Connection::AsyncReadLength() {
             int32_t bodyLen = 0;
             std::memcpy(&bodyLen, lengthBuffer_.data(), 4);
             bodyLen = ntohl(bodyLen);
-            if (bodyLen <= 0 || bodyLen > 1024 * 1024) { // 限制最大 1MB
+            if (bodyLen <= 0 || bodyLen > 1024 * 1024) {
                 Close();
                 return;
             }
@@ -69,13 +68,11 @@ void Connection::AsyncReadBody(int32_t bodyLen) {
             if (msg) {
                 OnMessageReceived(*msg);
             }
-            // 继续读取下一条消息的长度头
             AsyncReadLength();
         });
 }
 
 void Connection::OnMessageReceived(const im::Message& msg) {
-    // 交给业务分发器
     msgHandler_.OnMessage(shared_from_this(), msg);
 }
 
@@ -97,7 +94,7 @@ void Connection::DoWrite() {
                 Close();
                 return;
             }
-            DoWrite();  // 发送队列中的下一条
+            DoWrite();
         });
 }
 
@@ -105,7 +102,6 @@ void Connection::Close() {
     boost::system::error_code ec;
     socket_.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
     socket_.close(ec);
-    // 清理用户管理器中的记录
     if (userId_) {
         userManager_.RemoveUser(*userId_);
     }

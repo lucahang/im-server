@@ -2,30 +2,24 @@
 #include "connection.h"
 #include "user_manager.h"
 #include "database.h"
+#include "msg_manager.h"
 #include "security.h"
 #include <iostream>
 
-MessageHandler::MessageHandler(UserManager& userManager, Database& db)
-    : userManager_(userManager), db_(db) {}
+MessageHandler::MessageHandler(UserManager& userManager, Database& db, MsgManager& msgManager)
+    : userManager_(userManager), db_(db), msgManager_(msgManager) {}
 
 void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Message& msg) {
-    switch (msg.header().cmd()) {
-        case im::CMD_REGISTER_REQ:
-            HandleRegisterReq(conn, msg);
-            break;
-        case im::CMD_LOGIN_REQ:
-            HandleLoginReq(conn, msg);
-            break;
-        case im::CMD_CHAT_REQ:
-            HandleChatReq(conn, msg);
-            break;
-        case im::CMD_HEARTBEAT:
-            HandleHeartbeat(conn, msg);
-            break;
-        default:
-            // echo unknown
-            conn->Send(msg);
-            break;
+    int cmd = msg.header().cmd();
+    switch (cmd) {
+        case im::CMD_REGISTER_REQ:    HandleRegisterReq(conn, msg); break;
+        case im::CMD_LOGIN_REQ:       HandleLoginReq(conn, msg); break;
+        case im::CMD_SINGLE_MSG:      HandleSingleMsg(conn, msg); break;
+        case im::CMD_GROUP_MSG:       HandleGroupMsg(conn, msg); break;
+        case im::CMD_GET_HISTORY_REQ: HandleGetHistory(conn, msg); break;
+        case im::CMD_CLEAR_UNREAD_REQ: HandleClearUnread(conn, msg); break;
+        case im::CMD_HEARTBEAT:       HandleHeartbeat(conn, msg); break;
+        default: conn->Send(msg); break; // echo
     }
 }
 
@@ -39,7 +33,7 @@ void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const i
         im::Message respMsg;
         respMsg.mutable_header()->set_cmd(im::CMD_REGISTER_RES);
         respMsg.mutable_header()->set_seq(msg.header().seq());
-        respMsg.mutable_header()->set_status(1); // 参数错误
+        respMsg.mutable_header()->set_status(1);
         im::RegisterResponse resp;
         resp.set_status(1);
         respMsg.set_body(resp.SerializeAsString());
@@ -47,12 +41,10 @@ void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const i
         return;
     }
 
-    // 生成盐和哈希
     std::string salt = GenerateSalt();
     std::string hash = SHA256Hash(password + salt);
-
     int ret = db_.RegisterUser(username, hash, salt);
-    int status = (ret == 0) ? 0 : ((ret == -1) ? 2 : 3); // 0成功，2用户名重复，3其他错误
+    int status = (ret == 0) ? 0 : ((ret == -1) ? 2 : 3);
 
     im::Message respMsg;
     respMsg.mutable_header()->set_cmd(im::CMD_REGISTER_RES);
@@ -62,7 +54,6 @@ void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const i
     resp.set_status(status);
     respMsg.set_body(resp.SerializeAsString());
     conn->Send(respMsg);
-
     std::cout << "Register " << username << " status: " << status << std::endl;
 }
 
@@ -82,7 +73,6 @@ void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::
     if (db_.GetUserInfo(username, db_salt, db_hash, userid)) {
         std::string input_hash = SHA256Hash(password + db_salt);
         if (input_hash == db_hash) {
-            // 登录成功
             std::string uid_str = std::to_string(userid);
             conn->SetUserId(uid_str);
             userManager_.AddUser(uid_str, conn);
@@ -92,59 +82,94 @@ void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::
             resp.set_status(0);
             resp.set_user_id(uid_str);
             respMsg.set_body(resp.SerializeAsString());
-            std::cout << "User login: " << username << " (id=" << uid_str << ")" << std::endl;
+            std::cout << "Login: " << username << " (id=" << uid_str << ")" << std::endl;
         } else {
-            // 密码错误
             respMsg.mutable_header()->set_status(1);
             im::LoginResponse resp;
             resp.set_status(1);
             respMsg.set_body(resp.SerializeAsString());
-            std::cout << "Login failed (bad password): " << username << std::endl;
+            std::cout << "Login failed (bad pw): " << username << std::endl;
         }
     } else {
-        // 用户不存在
         respMsg.mutable_header()->set_status(2);
         im::LoginResponse resp;
         resp.set_status(2);
         respMsg.set_body(resp.SerializeAsString());
         std::cout << "Login failed (no user): " << username << std::endl;
     }
-
     conn->Send(respMsg);
 }
 
-void MessageHandler::HandleChatReq(std::shared_ptr<Connection> conn, const im::Message& msg) {
+void MessageHandler::HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+
     im::ChatMessage chat;
     if (!chat.ParseFromString(msg.body())) return;
 
-    // 发送者必须已登录，从连接获取 user_id
-    auto sender_id = conn->GetUserId();
-    if (!sender_id) return;
+    chat.set_sender(*userId);
+    if (chat.receiver().empty()) return;
 
-    // 发送回执
-    im::Message ack;
-    ack.mutable_header()->set_cmd(im::CMD_CHAT_RES);
-    ack.mutable_header()->set_seq(msg.header().seq());
-    ack.mutable_header()->set_status(0);
-    conn->Send(ack);
+    msgManager_.SendSingleMsg(chat);
+}
 
-    // 转发给接收者
-    auto receiverConn = userManager_.GetUser(chat.receiver());
-    if (receiverConn) {
-        im::Message forwardMsg;
-        forwardMsg.mutable_header()->set_cmd(im::CMD_CHAT_REQ);
-        forwardMsg.mutable_header()->set_seq(msg.header().seq());
-        forwardMsg.set_body(msg.body());
-        receiverConn->Send(forwardMsg);
-    } else {
-        im::Message offlineAck;
-        offlineAck.mutable_header()->set_cmd(im::CMD_CHAT_RES);
-        offlineAck.mutable_header()->set_seq(msg.header().seq());
-        offlineAck.mutable_header()->set_status(1001); // 接收者离线
-        conn->Send(offlineAck);
+void MessageHandler::HandleGroupMsg(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+
+    im::ChatMessage chat;
+    if (!chat.ParseFromString(msg.body())) return;
+    chat.set_sender(*userId);
+    if (chat.group_id().empty()) return;
+
+    // 群成员应动态查询，此处演示固定群组 "test_group"
+    std::vector<std::string> members = {"1", "2", "3"};
+    msgManager_.SendGroupMsg(chat, members);
+}
+
+void MessageHandler::HandleGetHistory(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+
+    im::HistoryRequest req;
+    if (!req.ParseFromString(msg.body())) return;
+
+    auto msgs = msgManager_.GetHistory(*userId, req.peer_id(), req.is_group(),
+                                       req.start(), req.count());
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_GET_HISTORY_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+    respMsg.mutable_header()->set_status(0);
+
+    im::HistoryResponse resp;
+    resp.set_status(0);
+    for (auto& m : msgs) {
+        *resp.add_messages() = m;
     }
+    respMsg.set_body(resp.SerializeAsString());
+    conn->Send(respMsg);
+}
+
+void MessageHandler::HandleClearUnread(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+
+    im::ClearUnreadRequest req;
+    if (!req.ParseFromString(msg.body())) return;
+
+    msgManager_.ClearUnread(*userId, req.peer_id(), req.is_group());
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_CLEAR_UNREAD_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+    respMsg.mutable_header()->set_status(0);
+    im::ClearUnreadResponse resp;
+    resp.set_status(0);
+    respMsg.set_body(resp.SerializeAsString());
+    conn->Send(respMsg);
 }
 
 void MessageHandler::HandleHeartbeat(std::shared_ptr<Connection> conn, const im::Message& msg) {
-    conn->Send(msg); // echo
+    conn->Send(msg);
 }
