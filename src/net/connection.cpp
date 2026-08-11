@@ -1,7 +1,7 @@
-#include "connection.h"
-#include "codec.h"
-#include "user_manager.h"
-#include "message_handler.h"
+#include "net/connection.h"
+#include "net/codec.h"
+#include "business/user_manager.h"
+#include "business/message_handler.h"
 #include <iostream>
 
 Connection::Connection(boost::asio::ip::tcp::socket socket,

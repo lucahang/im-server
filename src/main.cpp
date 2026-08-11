@@ -2,12 +2,12 @@
 #include <boost/asio/signal_set.hpp>
 #include <thread>
 #include <vector>
-#include "tcp_server.h"
-#include "user_manager.h"
-#include "message_handler.h"
-#include "database.h"
-#include "redis_wrapper.h"
-#include "msg_manager.h"
+#include "net/tcp_server.h"
+#include "business/user_manager.h"
+#include "business/message_handler.h"
+#include "db/database.h"
+#include "db/redis_wrapper.h"
+#include "business/msg_manager.h"
 
 int main() {
     try {
@@ -16,7 +16,7 @@ int main() {
 
         // 修改为你的 MySQL 参数
         Database db("localhost", "root", "159751", "im_db");
-        RedisClient redis;
+        RedisClient redis("tcp://127.0.0.1:6379");
         MsgManager msgManager(redis, db);
 
         UserManager userManager;

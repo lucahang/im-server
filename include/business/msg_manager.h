@@ -1,7 +1,7 @@
 #pragma once
-#include "redis_wrapper.h"
+#include "db/redis_wrapper.h"
 #include "message.pb.h"
-#include "database.h"
+#include "db/database.h"
 #include <string>
 #include <vector>
 #include <cstdint>

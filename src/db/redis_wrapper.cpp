@@ -1,5 +1,5 @@
-#include "redis_wrapper.h"
-#include "msg_manager.h"
+#include "db/redis_wrapper.h"
+#include "business/msg_manager.h"
 RedisClient::RedisClient(const std::string& uri) {
     sw::redis::ConnectionOptions opts;
     opts.host = "127.0.0.1";

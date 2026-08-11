@@ -1,5 +1,5 @@
-#include "user_manager.h"
-#include "connection.h"
+#include "business/user_manager.h"
+#include "net/connection.h"
 
 void UserManager::AddUser(const std::string& userId, ConnPtr conn) {
     std::unique_lock lock(mutex_);

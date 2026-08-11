@@ -1,5 +1,5 @@
-#include "tcp_server.h"
-#include "connection.h"
+#include "net/tcp_server.h"
+#include "net/connection.h"
 #include <iostream>
 
 TcpServer::TcpServer(boost::asio::io_context& ioc, uint16_t port,

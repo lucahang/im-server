@@ -1,9 +1,9 @@
-#include "message_handler.h"
-#include "connection.h"
-#include "user_manager.h"
-#include "database.h"
-#include "msg_manager.h"
-#include "security.h"
+#include "business/message_handler.h"
+#include "net/connection.h"
+#include "business/user_manager.h"
+#include "db/database.h"
+#include "business/msg_manager.h"
+#include "utils/security.h"
 #include <iostream>
 
 MessageHandler::MessageHandler(UserManager& userManager, Database& db, MsgManager& msgManager)
