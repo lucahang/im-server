@@ -17,7 +17,7 @@ int main() {
         // 修改为你的 MySQL 参数
         Database db("localhost", "root", "159751", "im_db");
         RedisClient redis;
-        MsgManager msgManager(redis);
+        MsgManager msgManager(redis, db);
 
         UserManager userManager;
         MessageHandler msgHandler(userManager, db, msgManager);

@@ -148,3 +148,269 @@ bool Database::GetUserInfo(const std::string& username, std::string& out_salt, s
     mysql_stmt_close(stmt);
     return true;
 }
+
+void Database::CheckError(int ret, MYSQL_STMT* stmt) {
+    if (ret != 0) {
+        std::string err = stmt ? mysql_stmt_error(stmt) : mysql_error(conn_);
+        throw DBException(err);
+    }
+}
+
+void Database::SaveMessage(const im::HistoryMessage& msg,
+                                    std::string session_id,
+                                    int32_t msg_type) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt) throw DBException("mysql_stmt_init failed");
+
+    const char* sql =
+        "INSERT INTO im_messages "
+        "(msg_id, session_id, sender_id, receiver_id, group_id, content, msg_type, status, created_at) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    int ret = mysql_stmt_prepare(stmt, sql, strlen(sql));
+    if (ret != 0) {
+        mysql_stmt_close(stmt);
+        CheckError(ret, stmt);
+    }
+
+    // 准备绑定参数 —— 必须确保在 execute 期间字符串指针有效
+    const std::string& sender   = msg.sender();
+    const std::string& receiver = msg.receiver();
+    const std::string& group    = msg.group_id();
+    const std::string& content  = msg.content();
+
+    int64_t msg_id    = msg.msg_id();
+    int64_t timestamp = msg.timestamp();
+    int32_t status    = 0;   // 默认正常
+    int32_t type      = msg_type;
+
+    MYSQL_BIND bind[9];
+    memset(bind, 0, sizeof(bind));
+
+    bind[0].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[0].buffer = &msg_id;
+
+    bind[1].buffer_type = MYSQL_TYPE_STRING;
+    bind[1].buffer = (char*)session_id.c_str();
+    bind[1].buffer_length = session_id.length();
+
+    bind[2].buffer_type = MYSQL_TYPE_STRING;
+    bind[2].buffer = (char*)sender.c_str();
+    bind[2].buffer_length = sender.length();
+
+    bind[3].buffer_type = MYSQL_TYPE_STRING;
+    bind[3].buffer = (char*)receiver.c_str();
+    bind[3].buffer_length = receiver.length();
+
+    bind[4].buffer_type = MYSQL_TYPE_STRING;
+    bind[4].buffer = (char*)group.c_str();
+    bind[4].buffer_length = group.length();
+
+    bind[5].buffer_type = MYSQL_TYPE_STRING;
+    bind[5].buffer = (char*)content.c_str();
+    bind[5].buffer_length = content.length();
+
+    bind[6].buffer_type = MYSQL_TYPE_TINY;
+    bind[6].buffer = &type;
+
+    bind[7].buffer_type = MYSQL_TYPE_TINY;
+    bind[7].buffer = &status;
+
+    bind[8].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[8].buffer = &timestamp;
+
+    ret = mysql_stmt_bind_param(stmt, bind);
+    if (ret != 0) {
+        mysql_stmt_close(stmt);
+        CheckError(ret, stmt);
+    }
+
+    ret = mysql_stmt_execute(stmt);
+    if (ret != 0) {
+        mysql_stmt_close(stmt);
+        CheckError(ret, stmt);
+    }
+
+    mysql_stmt_close(stmt);
+}
+
+void Database::UpsertUserSession(const std::string& user_id,
+                                          const std::string& session_id,
+                                          int32_t unread_count,
+                                          const std::string& last_msg,
+                                          int64_t updated_at) {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt) throw DBException("mysql_stmt_init failed");
+
+    const char* sql =
+        "INSERT INTO im_user_sessions (user_id, session_id, unread_count, last_msg, updated_at) "
+        "VALUES (?, ?, ?, ?, ?) "
+        "ON DUPLICATE KEY UPDATE unread_count = VALUES(unread_count), "
+        "last_msg = VALUES(last_msg), updated_at = VALUES(updated_at)";
+
+    if (mysql_stmt_prepare(stmt, sql, strlen(sql))) {
+        mysql_stmt_close(stmt);
+        CheckError(1, stmt);
+    }
+
+    MYSQL_BIND bind[5];
+    memset(bind, 0, sizeof(bind));
+
+    bind[0].buffer_type = MYSQL_TYPE_STRING;
+    bind[0].buffer = (char*)user_id.c_str();
+    bind[0].buffer_length = user_id.length();
+
+    bind[1].buffer_type = MYSQL_TYPE_STRING;
+    bind[1].buffer = (char*)session_id.c_str();
+    bind[1].buffer_length = session_id.length();
+
+    bind[2].buffer_type = MYSQL_TYPE_LONG;
+    bind[2].buffer = &unread_count;
+
+    bind[3].buffer_type = MYSQL_TYPE_STRING;
+    bind[3].buffer = (char*)last_msg.c_str();
+    bind[3].buffer_length = last_msg.length();
+
+    bind[4].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[4].buffer = &updated_at;
+
+    if (mysql_stmt_bind_param(stmt, bind)) {
+        mysql_stmt_close(stmt);
+        CheckError(1, stmt);
+    }
+    if (mysql_stmt_execute(stmt)) {
+        mysql_stmt_close(stmt);
+        CheckError(1, stmt);
+    }
+
+    mysql_stmt_close(stmt);
+}
+
+std::vector<im::HistoryMessage> Database::GetMessagesBySession(
+        const std::string& session_id,
+        int64_t start,
+        int32_t count) {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt) throw DBException("mysql_stmt_init failed");
+
+    // 按 created_at 降序排序，支持分页
+    const char* sql =
+        "SELECT msg_id, sender_id, receiver_id, group_id, content, created_at "
+        "FROM im_messages "
+        "WHERE session_id = ? "
+        "ORDER BY created_at DESC "
+        "LIMIT ?, ?";
+
+    if (mysql_stmt_prepare(stmt, sql, strlen(sql))) {
+        std::string err = mysql_stmt_error(stmt);
+        mysql_stmt_close(stmt);
+        throw DBException("Prepare failed: " + err);
+    }
+
+    // 绑定参数：session_id, start, count
+    MYSQL_BIND bind[3];
+    memset(bind, 0, sizeof(bind));
+
+    bind[0].buffer_type = MYSQL_TYPE_STRING;
+    bind[0].buffer = (char*)session_id.c_str();
+    bind[0].buffer_length = session_id.length();
+
+    bind[1].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[1].buffer = &start;
+
+    bind[2].buffer_type = MYSQL_TYPE_LONG;
+    bind[2].buffer = &count;
+
+    if (mysql_stmt_bind_param(stmt, bind)) {
+        std::string err = mysql_stmt_error(stmt);
+        mysql_stmt_close(stmt);
+        throw DBException("Bind param failed: " + err);
+    }
+
+    if (mysql_stmt_execute(stmt)) {
+        std::string err = mysql_stmt_error(stmt);
+        mysql_stmt_close(stmt);
+        throw DBException("Execute failed: " + err);
+    }
+
+    // 绑定结果列
+    int64_t msg_id;
+    char sender[65] = {0};
+    char receiver[65] = {0};
+    char group[65] = {0};
+    char content[2048] = {0};      // 假设单条消息不超过2048字节，可根据实际情况调整或动态分配
+    int64_t created_at;
+    unsigned long sender_len, receiver_len, group_len, content_len;
+
+    MYSQL_BIND result[6];
+    memset(result, 0, sizeof(result));
+
+    result[0].buffer_type = MYSQL_TYPE_LONGLONG;
+    result[0].buffer = &msg_id;
+
+    result[1].buffer_type = MYSQL_TYPE_STRING;
+    result[1].buffer = sender;
+    result[1].buffer_length = sizeof(sender) - 1;
+    result[1].length = &sender_len;
+
+    result[2].buffer_type = MYSQL_TYPE_STRING;
+    result[2].buffer = receiver;
+    result[2].buffer_length = sizeof(receiver) - 1;
+    result[2].length = &receiver_len;
+
+    result[3].buffer_type = MYSQL_TYPE_STRING;
+    result[3].buffer = group;
+    result[3].buffer_length = sizeof(group) - 1;
+    result[3].length = &group_len;
+
+    result[4].buffer_type = MYSQL_TYPE_STRING;
+    result[4].buffer = content;
+    result[4].buffer_length = sizeof(content) - 1;
+    result[4].length = &content_len;
+
+    result[5].buffer_type = MYSQL_TYPE_LONGLONG;
+    result[5].buffer = &created_at;
+
+    if (mysql_stmt_bind_result(stmt, result)) {
+        std::string err = mysql_stmt_error(stmt);
+        mysql_stmt_close(stmt);
+        throw DBException("Bind result failed: " + err);
+    }
+
+    // 存储结果集
+    if (mysql_stmt_store_result(stmt)) {
+        std::string err = mysql_stmt_error(stmt);
+        mysql_stmt_close(stmt);
+        throw DBException("Store result failed: " + err);
+    }
+
+    std::vector<im::HistoryMessage> messages;
+    while (true) {
+        int ret = mysql_stmt_fetch(stmt);
+        if (ret == MYSQL_NO_DATA) break;
+        if (ret == 1) { // 错误
+            std::string err = mysql_stmt_error(stmt);
+            mysql_stmt_free_result(stmt);
+            mysql_stmt_close(stmt);
+            throw DBException("Fetch failed: " + err);
+        }
+
+        im::HistoryMessage msg;
+        msg.set_msg_id(msg_id);
+        msg.set_sender(std::string(sender, sender_len));
+        msg.set_receiver(std::string(receiver, receiver_len));
+        msg.set_group_id(std::string(group, group_len));
+        msg.set_content(std::string(content, content_len));
+        msg.set_timestamp(created_at);
+        messages.push_back(std::move(msg));
+    }
+
+    mysql_stmt_free_result(stmt);
+    mysql_stmt_close(stmt);
+    return messages;
+}
