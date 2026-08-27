@@ -1,3 +1,4 @@
+//message.proto
 syntax = "proto3";
 package im;
 
@@ -14,6 +15,22 @@ enum Cmd {
   CMD_CLEAR_UNREAD_REQ   = 9;
   CMD_CLEAR_UNREAD_RES   = 10;
   CMD_HEARTBEAT          = 11;
+  CMD_QUIT_REQ           = 12;
+  CMD_QUIT_RES           = 13;
+  CMD_GET_CONTACTS_REQ   = 14;
+  CMD_GET_CONTACTS_RES   = 15;
+}
+
+message Contact {
+  string user_id = 1;
+  string username = 2; 
+  bool is_group = 3;
+  string alias = 4;
+}
+
+message ContactResponse {
+  int32 status = 1;
+  repeated Contact contacts = 2;
 }
 
 message Header {
@@ -32,6 +49,10 @@ message RegisterRequest {
   string password = 2;
 }
 
+message ContactRequest{
+  string user_id = 1;
+}
+
 message RegisterResponse {
   int32 status = 1;
 }
@@ -44,6 +65,7 @@ message LoginRequest {
 message LoginResponse {
   int32  status  = 1;
   string user_id = 2;
+  string username = 3;   // 确保存在
 }
 
 message ChatMessage {

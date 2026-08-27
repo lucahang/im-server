@@ -1,0 +1,222 @@
+[2026-08-12 07:32:06.782] [info] [thread 17731] Server listening on port 9000
+[2026-08-12 07:32:12.954] [info] [thread 17732] 
+Shutting down...
+[2026-08-12 07:32:12.955] [info] [thread 17731] Server exited cleanly.
+[2026-08-14 03:02:34.286] [info] [thread 5913] Server listening on port 9000
+[2026-08-14 03:03:09.545] [info] [thread 5915] 
+Shutting down...
+[2026-08-14 03:03:09.546] [info] [thread 5913] Server exited cleanly.
+[2026-08-14 03:03:22.695] [info] [thread 6163] Server listening on port 9000
+[2026-08-14 03:03:42.459] [info] [thread 6164] 
+Shutting down...
+[2026-08-14 03:03:42.459] [info] [thread 6163] Server exited cleanly.
+[2026-08-14 03:04:05.990] [info] [thread 6428] Server listening on port 9000
+[2026-08-14 03:04:15.555] [info] [thread 6432] 
+Shutting down...
+[2026-08-14 03:04:15.556] [info] [thread 6428] Server exited cleanly.
+[2026-08-14 03:18:48.624] [info] [thread 6627] Server listening on port 9000
+[2026-08-14 03:19:21.045] [info] [thread 6631] Login: 111 (id=2)
+[2026-08-14 03:19:37.752] [debug] [thread 6631] 2 send a message to 1
+[2026-08-14 03:20:08.760] [debug] [thread 6631] user: 2 sent a request to get history message with peer-1
+[2026-08-14 03:20:19.613] [info] [thread 6628] 
+Shutting down...
+[2026-08-14 03:20:19.615] [info] [thread 6627] Server exited cleanly.
+[2026-08-14 03:25:09.575] [info] [thread 8095] Server listening on port 9000
+[2026-08-14 03:25:19.826] [info] [thread 8099] 
+Shutting down...
+[2026-08-14 03:25:19.827] [info] [thread 8095] Server exited cleanly.
+[2026-08-14 03:25:30.780] [info] [thread 8262] Server listening on port 9000
+[2026-08-14 03:25:37.921] [info] [thread 8265] 
+Shutting down...
+[2026-08-14 03:25:37.924] [info] [thread 8262] Server exited cleanly.
+[2026-08-14 03:25:39.846] [info] [thread 8362] Server listening on port 9000
+[2026-08-14 03:25:48.466] [info] [thread 8364] 
+Shutting down...
+[2026-08-14 03:25:48.467] [info] [thread 8362] Server exited cleanly.
+[2026-08-14 03:25:54.130] [info] [thread 8454] Server listening on port 9000
+[2026-08-14 03:26:03.148] [info] [thread 8457] 
+Shutting down...
+[2026-08-14 03:26:03.149] [info] [thread 8454] Server exited cleanly.
+[2026-08-25 07:36:40.444] [info] [thread 3201] Server listening on port 9000
+[2026-08-25 07:38:27.678] [info] [thread 3203] 
+Shutting down...
+[2026-08-25 07:38:27.688] [info] [thread 3201] Server exited cleanly.
+[2026-08-25 17:49:46.692] [info] [thread 5262] Server listening on port 9000
+[2026-08-25 17:50:02.717] [info] [thread 5266] Login failed (bad pw): admin
+[2026-08-25 17:50:08.801] [info] [thread 5265] Login: admin (id=1)
+[2026-08-25 17:50:30.507] [info] [thread 5266] Login: 111 (id=2)
+[2026-08-25 17:57:27.949] [info] [thread 5264] Register 222 status: 2
+[2026-08-25 17:57:33.902] [info] [thread 5266] Register 222 status: 2
+[2026-08-25 17:57:44.397] [info] [thread 5267] Register 222 status: 2
+[2026-08-25 17:57:48.386] [info] [thread 5265] Register 222 status: 2
+[2026-08-25 17:58:05.349] [info] [thread 5267] Register 333 status: 0
+[2026-08-25 17:58:07.498] [info] [thread 5264] Login: 333 (id=4)
+[2026-08-25 18:07:30.110] [info] [thread 5265] Login failed (bad pw): admin
+[2026-08-25 18:07:35.337] [info] [thread 5266] Login failed (bad pw): admin
+[2026-08-25 18:07:48.534] [info] [thread 5264] Login failed (bad pw): admin
+[2026-08-25 18:07:56.386] [info] [thread 5265] Login failed (no user): admin3
+[2026-08-25 18:09:01.543] [info] [thread 5264] Login failed (no user): admin3
+[2026-08-25 18:09:12.423] [info] [thread 5266] Register admin3 status: 0
+[2026-08-25 18:09:16.781] [info] [thread 5267] Login: admin3 (id=5)
+[2026-08-25 18:09:42.327] [info] [thread 5266] Login failed (no user): 123
+[2026-08-25 18:18:03.317] [info] [thread 5264] Register admin status: 2
+[2026-08-25 18:18:15.366] [info] [thread 5267] Login failed (bad pw): admin
+[2026-08-25 18:18:17.358] [info] [thread 5265] Login failed (bad pw): admin
+[2026-08-25 18:18:28.291] [info] [thread 5264] Register admin status: 2
+[2026-08-25 18:19:02.915] [info] [thread 5266] Register admin status: 2
+[2026-08-25 18:19:11.616] [info] [thread 5265] Login failed (bad pw): admin
+[2026-08-25 18:20:56.216] [info] [thread 5264] Register admin status: 2
+[2026-08-25 18:21:14.739] [info] [thread 5267] Register admin status: 2
+[2026-08-25 18:21:28.722] [info] [thread 5266] Login failed (bad pw): admin
+[2026-08-25 18:21:32.603] [info] [thread 5264] Register admin status: 2
+[2026-08-25 18:21:42.053] [info] [thread 5266] Register 333 status: 2
+[2026-08-25 18:21:52.195] [info] [thread 5265] Register 555 status: 0
+[2026-08-25 18:21:54.745] [info] [thread 5267] Login: 555 (id=6)
+[2026-08-25 18:30:42.890] [info] [thread 5267] Login failed (no user): adni
+[2026-08-25 18:30:56.396] [info] [thread 5264] Login: admin (id=1)
+[2026-08-25 18:31:47.666] [info] [thread 5264] Login: 111 (id=2)
+[2026-08-25 18:41:36.245] [info] [thread 5265] 
+Shutting down...
+[2026-08-25 18:41:36.246] [info] [thread 5262] Server exited cleanly.
+[2026-08-25 18:42:08.213] [info] [thread 7426] Server listening on port 9000
+[2026-08-25 18:42:23.819] [info] [thread 7428] Login: admin (id=1)
+[2026-08-26 07:12:37.010] [info] [thread 7430] Login: admin (id=1)
+[2026-08-27 08:37:32.759] [info] [thread 3949] Server listening on port 9000
+[2026-08-27 10:19:32.258] [info] [thread 3954] 
+Shutting down...
+[2026-08-27 10:19:32.265] [info] [thread 3949] Server exited cleanly.
+[2026-08-27 10:19:33.944] [info] [thread 8315] Server listening on port 9000
+[2026-08-27 10:19:43.052] [info] [thread 8318] Login: admin (id=1)
+[2026-08-27 10:23:44.671] [info] [thread 8320] Login: admin (id=1)
+[2026-08-27 10:23:58.118] [info] [thread 8317] 
+Shutting down...
+[2026-08-27 10:23:58.119] [info] [thread 8315] Server exited cleanly.
+[2026-08-27 10:24:02.559] [info] [thread 8824] Server listening on port 9000
+[2026-08-27 10:24:12.029] [info] [thread 8828] Login: admin (id=1)
+[2026-08-27 10:24:16.854] [info] [thread 8826] 
+Shutting down...
+[2026-08-27 10:24:16.855] [info] [thread 8824] Server exited cleanly.
+[2026-08-27 10:29:06.536] [info] [thread 9528] Server listening on port 9000
+[2026-08-27 10:29:13.766] [info] [thread 9533] Login: 111 (id=2)
+[2026-08-27 10:29:13.769] [info] [thread 9531] userId: 2 request contact lists
+[2026-08-27 10:32:05.997] [info] [thread 9530] 
+Shutting down...
+[2026-08-27 10:32:05.998] [info] [thread 9528] Server exited cleanly.
+[2026-08-27 10:32:10.906] [info] [thread 9784] Server listening on port 9000
+[2026-08-27 10:32:16.545] [info] [thread 9787] Login: 111 (id=2)
+[2026-08-27 10:32:16.561] [info] [thread 9786] userId: 2 request contact lists
+[2026-08-27 10:37:30.361] [info] [thread 9788] Login: 111 (id=2)
+[2026-08-27 10:37:30.378] [info] [thread 9789] userId: 2 request contact lists
+[2026-08-27 10:37:30.379] [debug] [thread 9789] user_id: "1"
+
+[2026-08-27 10:37:32.200] [debug] [thread 9788] user: 2 sent a request to get history message with peer-1
+[2026-08-27 10:42:55.250] [info] [thread 9789] Login: admin (id=1)
+[2026-08-27 10:42:55.265] [info] [thread 9786] userId: 1 request contact lists
+[2026-08-27 10:42:55.267] [debug] [thread 9786] user_id: "2"
+
+[2026-08-27 10:43:04.003] [info] [thread 9789] Login: 111 (id=2)
+[2026-08-27 10:43:04.020] [info] [thread 9787] userId: 2 request contact lists
+[2026-08-27 10:43:04.022] [debug] [thread 9787] user_id: "1"
+
+[2026-08-27 10:43:09.530] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 10:43:10.631] [debug] [thread 9789] user: 2 sent a request to get history message with peer-1
+[2026-08-27 10:43:17.930] [debug] [thread 9788] 1 send a message to 2
+[2026-08-27 12:28:28.405] [info] [thread 9786] Login failed (bad pw): admin
+[2026-08-27 12:28:30.888] [info] [thread 9786] Login: admin (id=1)
+[2026-08-27 12:28:30.905] [info] [thread 9789] userId: 1 request contact lists
+[2026-08-27 12:28:30.911] [debug] [thread 9789] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:28:45.112] [info] [thread 9789] Login: 111 (id=2)
+[2026-08-27 12:28:45.128] [info] [thread 9786] userId: 2 request contact lists
+[2026-08-27 12:28:45.130] [debug] [thread 9786] user_id: "1"
+alias: "admin"
+
+[2026-08-27 12:28:46.484] [debug] [thread 9786] user: 2 sent a request to get history message with peer-1
+[2026-08-27 12:28:47.360] [debug] [thread 9789] user: 1 sent a request to get history message with peer-2
+[2026-08-27 12:28:56.721] [debug] [thread 9789] 2 send a message to 1
+[2026-08-27 12:29:57.365] [info] [thread 9787] Login: admin (id=1)
+[2026-08-27 12:29:57.384] [info] [thread 9787] userId: 1 request contact lists
+[2026-08-27 12:29:57.384] [debug] [thread 9787] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:29:58.729] [debug] [thread 9789] user: 1 sent a request to get history message with peer-2
+[2026-08-27 12:30:38.449] [debug] [thread 9788] 2 send a message to 1
+[2026-08-27 12:30:49.483] [info] [thread 9789] Login: admin (id=1)
+[2026-08-27 12:30:49.497] [info] [thread 9788] userId: 1 request contact lists
+[2026-08-27 12:30:49.498] [debug] [thread 9788] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:30:50.456] [debug] [thread 9786] user: 1 sent a request to get history message with peer-2
+[2026-08-27 12:36:50.641] [info] [thread 9786] Login: 111 (id=2)
+[2026-08-27 12:36:50.658] [info] [thread 9788] userId: 2 request contact lists
+[2026-08-27 12:36:50.659] [debug] [thread 9788] user_id: "1"
+alias: "admin"
+
+[2026-08-27 12:36:59.690] [info] [thread 9786] Login: admin (id=1)
+[2026-08-27 12:36:59.714] [info] [thread 9789] userId: 1 request contact lists
+[2026-08-27 12:36:59.719] [debug] [thread 9789] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:36:59.719] [debug] [thread 9789] user_id: "3"
+alias: "222"
+
+[2026-08-27 12:37:01.785] [debug] [thread 9788] user: 2 sent a request to get history message with peer-1
+[2026-08-27 12:37:08.198] [debug] [thread 9788] 2 send a message to 1
+[2026-08-27 12:37:09.203] [debug] [thread 9789] user: 1 sent a request to get history message with peer-2
+[2026-08-27 12:37:10.930] [debug] [thread 9789] user: 1 sent a request to get history message with peer-3
+[2026-08-27 12:37:23.562] [debug] [thread 9788] 1 send a message to 2
+[2026-08-27 12:37:44.581] [info] [thread 9788] Login: admin (id=1)
+[2026-08-27 12:37:44.586] [info] [thread 9789] userId: 1 request contact lists
+[2026-08-27 12:37:44.587] [debug] [thread 9789] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:37:44.587] [debug] [thread 9789] user_id: "3"
+alias: "222"
+
+[2026-08-27 12:37:45.630] [debug] [thread 9789] user: 1 sent a request to get history message with peer-2
+[2026-08-27 12:57:56.809] [info] [thread 9788] Login: admin (id=1)
+[2026-08-27 12:57:56.815] [info] [thread 9786] userId: 1 request contact lists
+[2026-08-27 12:57:56.819] [debug] [thread 9786] user_id: "2"
+alias: "111"
+
+[2026-08-27 12:57:56.819] [debug] [thread 9786] user_id: "3"
+alias: "222"
+
+[2026-08-27 13:05:28.730] [info] [thread 9787] Login: admin (id=1)
+[2026-08-27 13:05:28.746] [info] [thread 9788] userId: 1 request contact lists
+[2026-08-27 13:05:28.749] [debug] [thread 9788] user_id: "2"
+alias: "111"
+
+[2026-08-27 13:05:28.749] [debug] [thread 9788] user_id: "3"
+alias: "222"
+
+[2026-08-27 13:05:32.662] [info] [thread 9789] Login: 111 (id=2)
+[2026-08-27 13:05:32.668] [info] [thread 9787] userId: 2 request contact lists
+[2026-08-27 13:05:32.670] [debug] [thread 9787] user_id: "1"
+alias: "admin"
+
+[2026-08-27 13:05:35.043] [debug] [thread 9788] user: 2 sent a request to get history message with peer-1
+[2026-08-27 13:05:36.529] [debug] [thread 9786] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:05:41.260] [debug] [thread 9787] 2 send a message to 1
+[2026-08-27 13:05:42.970] [debug] [thread 9786] user: 1 sent a request to get history message with peer-3
+[2026-08-27 13:05:43.702] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:05:48.253] [debug] [thread 9787] user: 1 sent a request to get history message with peer-3
+[2026-08-27 13:05:48.666] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:05:54.138] [debug] [thread 9786] 2 send a message to 1
+[2026-08-27 13:05:55.415] [debug] [thread 9787] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:05:56.024] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:06:05.934] [debug] [thread 9789] 1 send a message to 2
+[2026-08-27 13:06:07.422] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:06:25.231] [debug] [thread 9787] 1 send a message to 2
+[2026-08-27 13:06:27.220] [debug] [thread 9789] 1 send a message to 2
+[2026-08-27 13:06:28.717] [debug] [thread 9788] 1 send a message to 2
+[2026-08-27 13:06:29.910] [debug] [thread 9789] 1 send a message to 2
+[2026-08-27 13:06:30.607] [debug] [thread 9786] 1 send a message to 2
+[2026-08-27 13:06:31.481] [debug] [thread 9788] 1 send a message to 2
+[2026-08-27 13:06:32.144] [debug] [thread 9786] 1 send a message to 2
+[2026-08-27 13:06:32.853] [debug] [thread 9789] 1 send a message to 2
+[2026-08-27 13:06:33.929] [debug] [thread 9786] 1 send a message to 2
+[2026-08-27 13:06:34.905] [debug] [thread 9788] user: 1 sent a request to get history message with peer-2
+[2026-08-27 13:06:39.583] [debug] [thread 9789] user: 1 sent a request to get history message with peer-3
+[2026-08-27 13:06:40.511] [debug] [thread 9787] user: 1 sent a request to get history message with peer-2

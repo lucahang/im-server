@@ -414,3 +414,95 @@ std::vector<im::HistoryMessage> Database::GetMessagesBySession(
     mysql_stmt_close(stmt);
     return messages;
 }
+
+std::vector<im::Contact> Database::GetUserContacts(const std::string& user_id) {
+    std::lock_guard<std::mutex> lock(mutex_);
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt) throw DBException("mysql_stmt_init failed");
+
+    // 自动释放语句资源的 RAII 包装
+    struct StmtGuard {
+        MYSQL_STMT* s;
+        ~StmtGuard() { if (s) mysql_stmt_close(s); }
+    } guard{stmt};
+
+    // 1. 准备 SQL 语句（查询状态正常 status = 1 的好友）
+    std::string sql = "SELECT friend_id, COALESCE(alias, '') FROM friendship WHERE user_id = ? AND status = 1";
+    if (mysql_stmt_prepare(stmt, sql.c_str(), sql.length()) != 0) {
+        throw DBException(std::string("mysql_stmt_prepare failed: ") + mysql_stmt_error(stmt));
+    }
+
+    // 2. 绑定输入参数 (user_id)
+    // 假设 user_id 传入的是可转换为数字的字符串，绑定为 LONGLONG (bigint)
+    long long target_user_id = 0;
+    try {
+        target_user_id = std::stoll(user_id);
+    } catch (...) {
+        throw DBException("Invalid user_id format");
+    }
+
+    MYSQL_BIND bind_param[1];
+    memset(bind_param, 0, sizeof(bind_param));
+
+    bind_param[0].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind_param[0].buffer = (void*)&target_user_id;
+    bind_param[0].is_unsigned = 0;
+
+    if (mysql_stmt_bind_param(stmt, bind_param) != 0) {
+        throw DBException(std::string("mysql_stmt_bind_param failed: ") + mysql_stmt_error(stmt));
+    }
+
+    // 3. 执行查询
+    if (mysql_stmt_execute(stmt) != 0) {
+        throw DBException(std::string("mysql_stmt_execute failed: ") + mysql_stmt_error(stmt));
+    }
+
+    // 4. 绑定输出结果缓存
+    long long friend_id = 0;
+    char alias_buf[51] = {0};
+    unsigned long alias_len = 0;
+    bool is_null[2] = {false, false};
+
+    MYSQL_BIND bind_result[2];
+    memset(bind_result, 0, sizeof(bind_result));
+
+    // friend_id (bigint)
+    bind_result[0].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind_result[0].buffer = (void*)&friend_id;
+    bind_result[0].is_null = &is_null[0];
+
+    // alias (varchar(50))
+    bind_result[1].buffer_type = MYSQL_TYPE_STRING;
+    bind_result[1].buffer = (void*)alias_buf;
+    bind_result[1].buffer_length = sizeof(alias_buf);
+    bind_result[1].length = &alias_len;
+    bind_result[1].is_null = &is_null[1];
+
+    if (mysql_stmt_bind_result(stmt, bind_result) != 0) {
+        throw DBException(std::string("mysql_stmt_bind_result failed: ") + mysql_stmt_error(stmt));
+    }
+
+    // 缓冲全部结果集中在本地
+    if (mysql_stmt_store_result(stmt) != 0) {
+        throw DBException(std::string("mysql_stmt_store_result failed: ") + mysql_stmt_error(stmt));
+    }
+
+    // 5. 循环读取结果
+    std::vector<im::Contact> contacts;
+    while (mysql_stmt_fetch(stmt) == 0) {
+        im::Contact contact;
+        contact.set_user_id(std::to_string(friend_id));
+        
+        if (!is_null[1] && alias_len > 0) {
+            contact.set_alias(std::string(alias_buf, alias_len));
+        } else {
+            contact.set_alias("");
+        }
+
+        contacts.push_back(std::move(contact));
+        memset(alias_buf, 0, sizeof(alias_buf)); // 清空 buffer 供下次使用
+    }
+
+    return contacts;
+}

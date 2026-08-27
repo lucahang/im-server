@@ -1,6 +1,8 @@
 #include "net/tcp_server.h"
 #include "net/connection.h"
+
 #include <iostream>
+#include <spdlog/spdlog.h>
 
 TcpServer::TcpServer(boost::asio::io_context& ioc, uint16_t port,
                      UserManager& userManager, MessageHandler& msgHandler)
@@ -9,7 +11,8 @@ TcpServer::TcpServer(boost::asio::io_context& ioc, uint16_t port,
     , msgHandler_(msgHandler) {}
 
 void TcpServer::Start() {
-    std::cout << "Server listening on port " << acceptor_.local_endpoint().port() << std::endl;
+    // std::cout << "Server listening on port " << acceptor_.local_endpoint().port() << std::endl;
+    spdlog::info("Server listening on port {}",acceptor_.local_endpoint().port());
     DoAccept();
 }
 

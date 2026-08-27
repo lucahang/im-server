@@ -43,7 +43,9 @@ public:
      */
     std::vector<im::HistoryMessage> GetMessagesBySession(const std::string& session_id,
                                                         int64_t start,
-                                                        int32_t count);     
+                                                        int32_t count);  
+                                                        
+    std::vector<im::Contact> GetUserContacts(const std::string& user_id);
 private:
     void CheckError(int ret, MYSQL_STMT* stmt = nullptr);
     MYSQL* conn_;

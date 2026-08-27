@@ -6,6 +6,13 @@ void UserManager::AddUser(const std::string& userId, ConnPtr conn) {
     users_[userId] = conn;
 }
 
+bool UserManager::FindUser(const std::string& userId){
+    if(users_.find(userId)==users_.end()){
+        return false;
+    }
+    return true;
+}
+
 void UserManager::RemoveUser(const std::string& userId) {
     std::unique_lock lock(mutex_);
     users_.erase(userId);

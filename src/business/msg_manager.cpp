@@ -1,4 +1,6 @@
 #include "business/msg_manager.h"
+
+#include <spdlog/spdlog.h>
 #include <algorithm>
 #include <chrono>
 #include <sstream>
@@ -69,7 +71,7 @@ void MsgManager::SendSingleMsg(const im::ChatMessage& chat) {
     std::string last_msg = chat.content().substr(0, 30);
     UpdateUserSession(chat.receiver(), session_id, now, last_msg, false);
     UpdateUserSession(chat.sender(), session_id, now, last_msg, true);
-
+    spdlog::debug("{} send a message to {}",chat.sender(),chat.receiver());
 }
 
 void MsgManager::SendGroupMsg(const im::ChatMessage& chat, const std::vector<std::string>& member_ids) {
@@ -95,16 +97,20 @@ void MsgManager::SendGroupMsg(const im::ChatMessage& chat, const std::vector<std
         bool is_sender = (uid == chat.sender());
         UpdateUserSession(uid, session_id, now, last_msg, is_sender);
     }
+    spdlog::debug("{} send a message in group {}",chat.sender(),chat.group_id());
 }
 
 std::vector<im::HistoryMessage> MsgManager::GetHistory(const std::string& uid,
                                                        const std::string& peer_id,
                                                        bool is_group,
                                                        int64_t start, int32_t count) {
+    
     std::string queue_key;
     if (is_group) {
         queue_key = "group:" + peer_id + ":queue";
+        spdlog::debug("user: {} sent a request to get history message in group-{}",uid,peer_id);
     } else {
+        spdlog::debug("user: {} sent a request to get history message with peer-{}",uid,peer_id);
         std::string session_id = MakeSingleSessionId(uid, peer_id);
         queue_key = "user:" + uid + ":queue:" + session_id;
     }

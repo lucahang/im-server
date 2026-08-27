@@ -16,9 +16,11 @@ public:
 private:
     void HandleRegisterReq(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleLoginReq(std::shared_ptr<Connection> conn, const im::Message& msg);
+    void HandleQuitReq(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGroupMsg(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGetHistory(std::shared_ptr<Connection> conn, const im::Message& msg);
+    void HandleGetContactsRep(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleClearUnread(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleHeartbeat(std::shared_ptr<Connection> conn, const im::Message& msg);
 

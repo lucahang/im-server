@@ -1,10 +1,12 @@
+#include <spdlog/spdlog.h>
+#include <iostream>
+
 #include "business/message_handler.h"
 #include "net/connection.h"
 #include "business/user_manager.h"
 #include "db/database.h"
 #include "business/msg_manager.h"
 #include "utils/security.h"
-#include <iostream>
 
 MessageHandler::MessageHandler(UserManager& userManager, Database& db, MsgManager& msgManager)
     : userManager_(userManager), db_(db), msgManager_(msgManager) {}
@@ -14,13 +16,39 @@ void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Messa
     switch (cmd) {
         case im::CMD_REGISTER_REQ:    HandleRegisterReq(conn, msg); break;
         case im::CMD_LOGIN_REQ:       HandleLoginReq(conn, msg); break;
+        case im::CMD_GET_CONTACTS_REQ:HandleGetContactsRep(conn, msg); break;
+        case im::CMD_QUIT_REQ:        HandleQuitReq(conn, msg);break; 
         case im::CMD_SINGLE_MSG:      HandleSingleMsg(conn, msg); break;
         case im::CMD_GROUP_MSG:       HandleGroupMsg(conn, msg); break;
         case im::CMD_GET_HISTORY_REQ: HandleGetHistory(conn, msg); break;
-        case im::CMD_CLEAR_UNREAD_REQ: HandleClearUnread(conn, msg); break;
+        case im::CMD_CLEAR_UNREAD_REQ:HandleClearUnread(conn, msg); break;
         case im::CMD_HEARTBEAT:       HandleHeartbeat(conn, msg); break;
         default: conn->Send(msg); break; // echo
     }
+}
+
+void MessageHandler::HandleGetContactsRep(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+    
+    im::HistoryRequest req;
+    if (!req.ParseFromString(msg.body())) return;
+    spdlog::info("userId: {} request contact lists",userId.value());
+    auto contacts = db_.GetUserContacts(userId.value());
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_GET_CONTACTS_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+    respMsg.mutable_header()->set_status(0);
+
+    im::ContactResponse resp;
+    resp.set_status(0);
+    for (auto& c : contacts) {
+        //spdlog::debug("{}",c.DebugString());
+        *resp.add_contacts() = c;
+    }
+    respMsg.set_body(resp.SerializeAsString());
+    conn->Send(respMsg);
 }
 
 void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const im::Message& msg) {
@@ -54,7 +82,8 @@ void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const i
     resp.set_status(status);
     respMsg.set_body(resp.SerializeAsString());
     conn->Send(respMsg);
-    std::cout << "Register " << username << " status: " << status << std::endl;
+    // std::cout << "Register " << username << " status: " << status << std::endl;
+    spdlog::info("Register {} status: {}",username,status);
 }
 
 void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::Message& msg) {
@@ -81,23 +110,33 @@ void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::
             im::LoginResponse resp;
             resp.set_status(0);
             resp.set_user_id(uid_str);
+            resp.set_username(username);
             respMsg.set_body(resp.SerializeAsString());
-            std::cout << "Login: " << username << " (id=" << uid_str << ")" << std::endl;
+            // std::cout << "Login: " << username << " (id=" << uid_str << ")" << std::endl;
+            spdlog::info("Login: {} (id={})",username,uid_str);
         } else {
             respMsg.mutable_header()->set_status(1);
             im::LoginResponse resp;
             resp.set_status(1);
             respMsg.set_body(resp.SerializeAsString());
-            std::cout << "Login failed (bad pw): " << username << std::endl;
+            // std::cout << "Login failed (bad pw): " << username << std::endl;
+            spdlog::info("Login failed (bad pw): {}",username);
         }
     } else {
         respMsg.mutable_header()->set_status(2);
         im::LoginResponse resp;
         resp.set_status(2);
         respMsg.set_body(resp.SerializeAsString());
-        std::cout << "Login failed (no user): " << username << std::endl;
+        // std::cout << "Login failed (no user): " << username << std::endl;
+        spdlog::info("Login failed (no user): {}",username);
     }
     conn->Send(respMsg);
+}
+
+void MessageHandler::HandleQuitReq(std::shared_ptr<Connection> conn, const im::Message& msg) {
+    std::string user_id=msg.body();
+    spdlog::debug("user_id: {}",user_id);
+    userManager_.RemoveUser(user_id);
 }
 
 void MessageHandler::HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg) {
