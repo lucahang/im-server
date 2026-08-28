@@ -17,6 +17,7 @@ public:
                                                bool is_group,
                                                int64_t start, int32_t count);
     void ClearUnread(const std::string& uid, const std::string& peer_id, bool is_group);
+    
     static std::string MakeSingleSessionId(const std::string& uid1, const std::string& uid2);
     static std::string MakeGroupSessionId(const std::string& group_id);
     int64_t NextMsgId();

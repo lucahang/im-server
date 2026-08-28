@@ -148,6 +148,12 @@ void MessageHandler::HandleSingleMsg(std::shared_ptr<Connection> conn, const im:
 
     chat.set_sender(*userId);
     if (chat.receiver().empty()) return;
+    
+    auto peer_id = chat.receiver();
+    if(userManager_.FindUser(peer_id)){
+        auto peer=userManager_.GetUser(peer_id);
+        peer->Send(msg);
+    }
 
     msgManager_.SendSingleMsg(chat);
 }

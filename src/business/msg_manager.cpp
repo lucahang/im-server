@@ -71,6 +71,8 @@ void MsgManager::SendSingleMsg(const im::ChatMessage& chat) {
     std::string last_msg = chat.content().substr(0, 30);
     UpdateUserSession(chat.receiver(), session_id, now, last_msg, false);
     UpdateUserSession(chat.sender(), session_id, now, last_msg, true);
+    // add signal to update chat
+
     spdlog::debug("{} send a message to {}",chat.sender(),chat.receiver());
 }
 
