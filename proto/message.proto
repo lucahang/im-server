@@ -19,6 +19,8 @@ enum Cmd {
   CMD_QUIT_RES           = 13;
   CMD_GET_CONTACTS_REQ   = 14;
   CMD_GET_CONTACTS_RES   = 15;
+  CMD_GET_LOADMORE_HISTORY_REQ = 16;
+  CMD_GET_LOADMORE_HISTORY_RES = 17;
 }
 
 message Contact {
@@ -69,10 +71,11 @@ message LoginResponse {
 }
 
 message ChatMessage {
-  string sender   = 1;
-  string receiver = 2;
-  string group_id = 3;
-  string content  = 4;
+  string sender     = 1;
+  string receiver   = 2;
+  string group_id   = 3;
+  string content    = 4;
+  string timestamp  = 5;
 }
 
 message HistoryRequest {

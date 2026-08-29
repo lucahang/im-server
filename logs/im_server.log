@@ -410,3 +410,386 @@ Shutting down...
 [2026-08-28 09:56:31.103] [debug] [thread 14266] 2 send a message to 1
 [2026-08-28 09:56:31.953] [debug] [thread 14267] 2 send a message to 1
 [2026-08-28 09:56:32.784] [debug] [thread 14265] 2 send a message to 1
+[2026-08-28 12:52:29.512] [info] [thread 14264] Login: admin (id=1)
+[2026-08-28 12:52:29.517] [info] [thread 14265] userId: 1 request contact lists
+[2026-08-28 12:52:36.134] [info] [thread 14267] Login: 111 (id=2)
+[2026-08-28 12:52:36.156] [info] [thread 14265] userId: 2 request contact lists
+[2026-08-28 12:52:37.271] [debug] [thread 14266] user: 1 sent a request to get history message with peer-3
+[2026-08-28 12:52:37.922] [debug] [thread 14264] user: 1 sent a request to get history message with peer-2
+[2026-08-28 12:52:38.960] [debug] [thread 14267] user: 2 sent a request to get history message with peer-1
+[2026-08-28 12:57:59.040] [debug] [thread 14264] user: 1 sent a request to get history message with peer-3
+[2026-08-28 12:58:11.753] [debug] [thread 14266] user: 1 sent a request to get history message with peer-2
+[2026-08-28 12:58:12.528] [debug] [thread 14266] user: 1 sent a request to get history message with peer-3
+[2026-08-28 12:58:13.233] [debug] [thread 14267] user: 1 sent a request to get history message with peer-3
+[2026-08-28 12:58:13.662] [debug] [thread 14266] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:05:51.140] [info] [thread 14267] Login: 111 (id=2)
+[2026-08-28 13:05:51.154] [info] [thread 14264] userId: 2 request contact lists
+[2026-08-28 13:05:56.811] [debug] [thread 14266] user: 2 sent a request to get history message with peer-1
+[2026-08-28 13:06:14.407] [info] [thread 14267] 
+Shutting down...
+[2026-08-28 13:06:14.410] [info] [thread 14262] Server exited cleanly.
+[2026-08-28 13:06:16.236] [info] [thread 20367] Server listening on port 9000
+[2026-08-28 13:06:24.953] [info] [thread 20371] Login: 111 (id=2)
+[2026-08-28 13:06:24.965] [info] [thread 20372] userId: 2 request contact lists
+[2026-08-28 13:06:31.298] [info] [thread 20371] Login: admin (id=1)
+[2026-08-28 13:06:31.316] [info] [thread 20369] userId: 1 request contact lists
+[2026-08-28 13:06:34.717] [debug] [thread 20371] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:06:36.355] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:06:37.792] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:06:39.492] [debug] [thread 20369] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:07:15.270] [info] [thread 20370] Login: admin (id=1)
+[2026-08-28 13:07:15.288] [info] [thread 20371] userId: 1 request contact lists
+[2026-08-28 13:07:18.464] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:07:53.665] [debug] [thread 20369] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:08:04.374] [info] [thread 20371] Login: 111 (id=2)
+[2026-08-28 13:08:04.392] [info] [thread 20372] userId: 2 request contact lists
+[2026-08-28 13:17:34.280] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:17:34.821] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:17:35.386] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:17:35.958] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:18:33.118] [debug] [thread 20371] user: 2 sent a request to get history message with peer-1
+[2026-08-28 13:18:41.421] [debug] [thread 20370] 2 send a message to 1
+[2026-08-28 13:18:52.884] [debug] [thread 20371] 2 send a message to 1
+[2026-08-28 13:19:06.150] [debug] [thread 20369] 1 send a message to 2
+[2026-08-28 13:19:12.024] [debug] [thread 20370] 1 send a message to 2
+[2026-08-28 13:19:20.626] [debug] [thread 20369] 1 send a message to 2
+[2026-08-28 13:19:39.697] [debug] [thread 20371] 2 send a message to 1
+[2026-08-28 13:19:42.610] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:19:43.599] [debug] [thread 20372] user: 2 sent a request to get history message with peer-1
+[2026-08-28 13:22:14.719] [info] [thread 20372] Login: admin (id=1)
+[2026-08-28 13:22:14.732] [info] [thread 20371] userId: 1 request contact lists
+[2026-08-28 13:22:18.538] [debug] [thread 20370] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:22:19.056] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:22:21.788] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:22:22.300] [debug] [thread 20369] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:22:52.151] [info] [thread 20372] Login: admin (id=1)
+[2026-08-28 13:22:52.154] [info] [thread 20369] userId: 1 request contact lists
+[2026-08-28 13:22:56.111] [debug] [thread 20371] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:22:57.022] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:22:57.808] [debug] [thread 20371] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:22:58.377] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:22:58.932] [debug] [thread 20371] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:22:59.601] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:22:59.966] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:23:00.633] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:01.319] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:23:01.994] [debug] [thread 20371] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:02.394] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:23:03.140] [debug] [thread 20370] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:04.250] [debug] [thread 20371] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:04.538] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:23:04.908] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:05.207] [debug] [thread 20371] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:23:05.778] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:23:06.105] [debug] [thread 20372] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:25:12.175] [info] [thread 20369] Login: admin (id=1)
+[2026-08-28 13:25:12.193] [info] [thread 20369] userId: 1 request contact lists
+[2026-08-28 13:25:15.934] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:25:16.397] [debug] [thread 20372] user: 1 sent a request to get history message with peer-2
+[2026-08-28 13:25:19.447] [debug] [thread 20369] user: 1 sent a request to get history message with peer-3
+[2026-08-28 13:25:19.842] [debug] [thread 20371] user: 1 sent a request to get history message with peer-2
+[2026-08-28 14:11:01.460] [info] [thread 20369] Login: 111 (id=2)
+[2026-08-28 14:11:01.479] [info] [thread 20372] userId: 2 request contact lists
+[2026-08-28 14:11:04.134] [debug] [thread 20372] user: 2 sent a request to get history message with peer-1
+[2026-08-28 14:11:11.989] [debug] [thread 20369] user: 2 sent a request to get history message with peer-1
+[2026-08-28 14:21:50.552] [info] [thread 20371] Login: 111 (id=2)
+[2026-08-28 14:21:50.572] [info] [thread 20372] userId: 2 request contact lists
+[2026-08-28 14:26:26.436] [info] [thread 20370] Login: 111 (id=2)
+[2026-08-28 14:26:26.454] [info] [thread 20371] userId: 2 request contact lists
+[2026-08-28 14:26:28.762] [debug] [thread 20369] user: 2 sent a request to get history message with peer-1
+[2026-08-28 14:26:29.320] [debug] [thread 20370] user: 2 sent a request to get history message with peer-1
+[2026-08-28 14:31:02.408] [info] [thread 20370] 
+Shutting down...
+[2026-08-28 14:31:02.410] [info] [thread 20367] Server exited cleanly.
+[2026-08-28 14:59:30.647] [info] [thread 33047] Server listening on port 9000
+[2026-08-28 14:59:36.730] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-28 14:59:36.743] [info] [thread 33051] userId: 2 request contact lists
+[2026-08-28 14:59:38.894] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-28 15:08:28.337] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-28 15:08:28.356] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-28 15:08:31.259] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-28 15:09:02.730] [info] [thread 33052] Login: admin (id=1)
+[2026-08-28 15:09:02.746] [info] [thread 33050] userId: 1 request contact lists
+[2026-08-28 15:09:09.962] [debug] [thread 33049] user: 1 sent a request to get history message with peer-2
+[2026-08-28 15:09:34.279] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-28 15:13:18.087] [debug] [thread 33049] user: 1 sent a request to get history message with peer-2
+[2026-08-28 15:13:21.881] [debug] [thread 33052] user: 1 sent a request to get history message with peer-3
+[2026-08-28 15:13:22.553] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-28 15:18:31.938] [debug] [thread 33049] user: 1 sent a request to get history message with peer-2
+[2026-08-28 15:18:35.616] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-28 15:18:54.543] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 04:14:35.123] [info] [thread 33051] Login: 111 (id=2)
+[2026-08-29 04:14:35.127] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 04:14:44.010] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 04:17:55.185] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-29 04:17:55.203] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 04:17:57.693] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 04:25:03.584] [info] [thread 33051] Login: 111 (id=2)
+[2026-08-29 04:25:03.604] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 04:25:05.011] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 04:27:33.431] [info] [thread 33049] Login: 111 (id=2)
+[2026-08-29 04:27:33.436] [info] [thread 33051] userId: 2 request contact lists
+[2026-08-29 04:27:39.222] [debug] [thread 33049] user: 2 sent a request to get history message with peer-1
+[2026-08-29 05:54:54.983] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 05:54:55.000] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 05:55:01.327] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 05:56:02.244] [debug] [thread 33052] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:01:44.406] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-29 06:01:44.423] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 06:02:03.870] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:05:39.827] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 06:05:39.830] [info] [thread 33051] userId: 2 request contact lists
+[2026-08-29 06:05:46.302] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:06:59.834] [info] [thread 33051] Login: 111 (id=2)
+[2026-08-29 06:06:59.853] [info] [thread 33050] userId: 2 request contact lists
+[2026-08-29 06:07:10.651] [debug] [thread 33052] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:09:05.917] [info] [thread 33051] Login: 111 (id=2)
+[2026-08-29 06:09:05.934] [info] [thread 33050] userId: 2 request contact lists
+[2026-08-29 06:09:11.519] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:14:24.214] [info] [thread 33049] Login: 111 (id=2)
+[2026-08-29 06:14:24.234] [info] [thread 33052] userId: 2 request contact lists
+[2026-08-29 06:14:32.805] [debug] [thread 33049] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:14:35.378] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 06:14:55.408] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 06:15:04.498] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 06:15:07.821] [debug] [thread 33050] 2 send a message to 1
+[2026-08-29 06:15:10.431] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 06:21:34.307] [info] [thread 33051] Login: 111 (id=2)
+[2026-08-29 06:21:34.323] [info] [thread 33050] userId: 2 request contact lists
+[2026-08-29 06:21:40.331] [info] [thread 33052] Login: admin (id=1)
+[2026-08-29 06:21:40.347] [info] [thread 33050] userId: 1 request contact lists
+[2026-08-29 06:21:49.140] [debug] [thread 33049] user: 1 sent a request to get history message with peer-2
+[2026-08-29 06:21:54.084] [debug] [thread 33049] user: 2 sent a request to get history message with peer-1
+[2026-08-29 06:21:57.469] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 06:22:10.454] [debug] [thread 33051] 2 send a message to 1
+[2026-08-29 06:22:25.811] [debug] [thread 33049] 1 send a message to 2
+[2026-08-29 06:24:47.284] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-29 06:52:25.903] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 06:52:25.920] [info] [thread 33052] userId: 2 request contact lists
+[2026-08-29 06:52:27.086] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:13:47.724] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-29 07:13:47.738] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 07:13:48.969] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:14:12.232] [info] [thread 33052] Login: admin (id=1)
+[2026-08-29 07:14:12.252] [info] [thread 33049] userId: 1 request contact lists
+[2026-08-29 07:14:14.256] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:14:22.594] [debug] [thread 33052] 1 send a message to 2
+[2026-08-29 07:14:36.084] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 07:14:57.328] [debug] [thread 33050] 1 send a message to 2
+[2026-08-29 07:16:28.278] [debug] [thread 33049] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:16:33.752] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:17:08.152] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 07:17:08.168] [info] [thread 33052] userId: 2 request contact lists
+[2026-08-29 07:17:13.318] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:17:28.605] [info] [thread 33050] Login: admin (id=1)
+[2026-08-29 07:17:28.608] [info] [thread 33052] userId: 1 request contact lists
+[2026-08-29 07:17:34.260] [debug] [thread 33050] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:17:38.371] [debug] [thread 33050] 1 send a message to 2
+[2026-08-29 07:17:41.563] [debug] [thread 33051] 2 send a message to 1
+[2026-08-29 07:20:33.164] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 07:20:33.183] [info] [thread 33051] userId: 2 request contact lists
+[2026-08-29 07:20:37.271] [info] [thread 33052] Login: admin (id=1)
+[2026-08-29 07:20:37.286] [info] [thread 33049] userId: 1 request contact lists
+[2026-08-29 07:20:43.093] [debug] [thread 33052] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:20:46.640] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:20:48.212] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 07:20:50.763] [debug] [thread 33050] 1 send a message to 2
+[2026-08-29 07:23:42.922] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 07:23:42.940] [info] [thread 33052] userId: 2 request contact lists
+[2026-08-29 07:24:05.176] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 07:24:05.190] [info] [thread 33052] userId: 2 request contact lists
+[2026-08-29 07:24:45.742] [info] [thread 33050] Login: 111 (id=2)
+[2026-08-29 07:24:45.759] [info] [thread 33051] userId: 2 request contact lists
+[2026-08-29 07:24:49.854] [debug] [thread 33050] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:24:53.678] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 07:24:55.382] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 07:25:02.946] [info] [thread 33050] Login: admin (id=1)
+[2026-08-29 07:25:02.966] [info] [thread 33049] userId: 1 request contact lists
+[2026-08-29 07:25:04.564] [debug] [thread 33050] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:25:08.784] [debug] [thread 33049] 1 send a message to 2
+[2026-08-29 07:25:10.430] [debug] [thread 33052] 1 send a message to 2
+[2026-08-29 07:25:45.958] [info] [thread 33049] Login: 111 (id=2)
+[2026-08-29 07:25:45.962] [info] [thread 33049] userId: 2 request contact lists
+[2026-08-29 07:25:49.174] [debug] [thread 33052] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:28:56.952] [info] [thread 33052] Login: 111 (id=2)
+[2026-08-29 07:28:56.971] [info] [thread 33050] userId: 2 request contact lists
+[2026-08-29 07:28:59.210] [debug] [thread 33051] user: 2 sent a request to get history message with peer-1
+[2026-08-29 07:29:04.448] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 07:29:11.293] [info] [thread 33052] Login: admin (id=1)
+[2026-08-29 07:29:11.311] [info] [thread 33052] userId: 1 request contact lists
+[2026-08-29 07:29:25.483] [debug] [thread 33050] 2 send a message to 1
+[2026-08-29 07:29:26.318] [debug] [thread 33049] user: 1 sent a request to get history message with peer-2
+[2026-08-29 07:29:29.120] [debug] [thread 33052] 1 send a message to 2
+[2026-08-29 07:29:53.870] [debug] [thread 33050] 1 send a message to 2
+[2026-08-29 07:29:58.600] [debug] [thread 33049] 2 send a message to 1
+[2026-08-29 07:30:00.061] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 07:30:29.794] [debug] [thread 33049] 1 send a message to 2
+[2026-08-29 07:30:31.228] [debug] [thread 33052] 2 send a message to 1
+[2026-08-29 07:32:35.363] [info] [thread 33052] 
+Shutting down...
+[2026-08-29 07:32:35.363] [info] [thread 33047] Server exited cleanly.
+[2026-08-29 10:20:25.293] [info] [thread 4952] Server listening on port 9000
+[2026-08-29 10:20:30.424] [info] [thread 4957] Login: 111 (id=2)
+[2026-08-29 10:20:30.430] [info] [thread 4956] userId: 2 request contact lists
+[2026-08-29 10:20:32.385] [debug] [thread 4958] user: 2 sent a request to get history message with peer-1
+[2026-08-29 10:20:36.536] [debug] [thread 4956] 2 send a message to 1
+[2026-08-29 10:22:48.712] [info] [thread 4957] Login: 111 (id=2)
+[2026-08-29 10:22:48.728] [info] [thread 4958] userId: 2 request contact lists
+[2026-08-29 10:22:53.627] [debug] [thread 4956] user: 2 sent a request to get history message with peer-1
+[2026-08-29 10:23:11.038] [info] [thread 4958] Login: admin (id=1)
+[2026-08-29 10:23:11.041] [info] [thread 4955] userId: 1 request contact lists
+[2026-08-29 10:23:18.845] [debug] [thread 4957] user: 1 sent a request to get history message with peer-2
+[2026-08-29 10:23:26.457] [debug] [thread 4955] 1 send a message to 2
+[2026-08-29 10:23:29.726] [debug] [thread 4957] 2 send a message to 1
+[2026-08-29 10:23:43.376] [debug] [thread 4955] user: 1 sent a request to get history message with peer-3
+[2026-08-29 10:23:43.969] [debug] [thread 4956] user: 1 sent a request to get history message with peer-2
+[2026-08-29 10:23:44.572] [debug] [thread 4955] user: 1 sent a request to get history message with peer-3
+[2026-08-29 10:23:44.984] [debug] [thread 4957] user: 1 sent a request to get history message with peer-2
+[2026-08-29 10:23:53.757] [debug] [thread 4956] 1 send a message to 2
+[2026-08-29 10:29:34.670] [info] [thread 4955] Login: 111 (id=2)
+[2026-08-29 10:29:34.687] [info] [thread 4958] userId: 2 request contact lists
+[2026-08-29 10:29:39.261] [debug] [thread 4955] user: 2 sent a request to get history message with peer-1
+[2026-08-29 10:30:27.848] [info] [thread 4958] Login: 111 (id=2)
+[2026-08-29 10:30:27.867] [info] [thread 4955] userId: 2 request contact lists
+[2026-08-29 10:30:30.127] [debug] [thread 4956] user: 2 sent a request to get history message with peer-1
+[2026-08-29 13:27:12.939] [info] [thread 4956] 
+Shutting down...
+[2026-08-29 13:27:12.944] [info] [thread 4952] Server exited cleanly.
+[2026-08-29 13:27:14.826] [info] [thread 9969] Server listening on port 9000
+[2026-08-29 13:27:21.913] [info] [thread 9971] Login: 111 (id=2)
+[2026-08-29 13:27:21.921] [info] [thread 9974] userId: 2 request contact lists
+[2026-08-29 13:27:23.968] [debug] [thread 9971] user: 2 sent a request to get history message with peer-1
+[2026-08-29 13:27:51.372] [info] [thread 9974] 
+Shutting down...
+[2026-08-29 13:27:51.372] [info] [thread 9969] Server exited cleanly.
+[2026-08-29 13:37:15.816] [info] [thread 12086] Server listening on port 9000
+[2026-08-29 13:37:25.418] [info] [thread 12090] Login: 111 (id=2)
+[2026-08-29 13:37:25.430] [info] [thread 12091] userId: 2 request contact lists
+[2026-08-29 13:37:26.910] [debug] [thread 12089] user: 2 sent a request to get history message with peer-1
+[2026-08-29 13:37:35.163] [debug] [thread 12091] user: 2 sent a request to get history message with peer-1
+[2026-08-29 13:37:45.257] [info] [thread 12089] 
+Shutting down...
+[2026-08-29 13:37:45.257] [info] [thread 12086] Server exited cleanly.
+[2026-08-29 14:01:17.318] [info] [thread 13943] Server listening on port 9000
+[2026-08-29 14:01:21.846] [info] [thread 13945] Login: 111 (id=2)
+[2026-08-29 14:01:21.863] [info] [thread 13946] userId: 2 request contact lists
+[2026-08-29 14:01:24.442] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:25.744] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:29.144] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:31.791] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:36.596] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:39.393] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:01:40.836] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:06:27.978] [info] [thread 13946] Login: 111 (id=2)
+[2026-08-29 14:06:27.994] [info] [thread 13945] userId: 2 request contact lists
+[2026-08-29 14:06:29.572] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:06:30.868] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:06:35.080] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:08:27.571] [info] [thread 13946] Login: 111 (id=2)
+[2026-08-29 14:08:27.588] [info] [thread 13945] userId: 2 request contact lists
+[2026-08-29 14:08:29.029] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:08:31.591] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:07.625] [info] [thread 13948] Login: 111 (id=2)
+[2026-08-29 14:09:07.628] [info] [thread 13946] userId: 2 request contact lists
+[2026-08-29 14:09:08.864] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:10.652] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:09:12.632] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:09:13.896] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:09:15.074] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:09:16.069] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:09:17.205] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:09:18.085] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:20.301] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:50.231] [info] [thread 13947] Login: 111 (id=2)
+[2026-08-29 14:09:50.235] [info] [thread 13948] userId: 2 request contact lists
+[2026-08-29 14:09:51.494] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:54.703] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:09:59.143] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:10:04.383] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:12:17.717] [info] [thread 13948] Login: 111 (id=2)
+[2026-08-29 14:12:17.733] [info] [thread 13948] userId: 2 request contact lists
+[2026-08-29 14:12:20.094] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:12:23.564] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:24.089] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:24.534] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:25.080] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:25.488] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:25.921] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:26.297] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:26.705] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:27.327] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:29.260] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:31.752] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:34.204] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:35.369] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:36.136] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:37.130] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:38.155] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:39.202] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:40.525] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:41.947] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:43.760] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:45.377] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:46.121] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:48.677] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:49.427] [debug] [thread 13948] 2 send a message to 1
+[2026-08-29 14:12:50.221] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:51.637] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:52.671] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:53.585] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:54.467] [debug] [thread 13945] 2 send a message to 1
+[2026-08-29 14:12:55.752] [debug] [thread 13946] 2 send a message to 1
+[2026-08-29 14:12:57.694] [debug] [thread 13947] 2 send a message to 1
+[2026-08-29 14:12:58.937] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:05.215] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:23.653] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:25.909] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:28.860] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:32.532] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.198] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.893] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.897] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.899] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.902] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.923] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.955] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:36.994] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.017] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.022] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.028] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.078] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.104] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.129] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.149] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.172] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:37.234] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.659] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.873] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.876] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.908] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.917] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.947] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.968] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.972] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:40.987] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.013] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.044] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.074] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.102] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.121] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.137] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.141] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.143] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.173] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.205] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.235] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.238] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.242] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.260] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.266] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.272] [debug] [thread 13946] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.299] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.329] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.357] [debug] [thread 13947] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:41.726] [debug] [thread 13945] user: 2 sent a request to get history message with peer-1
+[2026-08-29 14:13:43.331] [debug] [thread 13948] user: 2 sent a request to get history message with peer-1

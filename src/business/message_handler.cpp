@@ -183,7 +183,12 @@ void MessageHandler::HandleGetHistory(std::shared_ptr<Connection> conn, const im
                                        req.start(), req.count());
 
     im::Message respMsg;
-    respMsg.mutable_header()->set_cmd(im::CMD_GET_HISTORY_RES);
+    if(req.count() == 20){
+        respMsg.mutable_header()->set_cmd(im::CMD_GET_HISTORY_RES);
+    }
+    else if(req.count() == 10){
+        respMsg.mutable_header()->set_cmd(im::CMD_GET_LOADMORE_HISTORY_RES);
+    }
     respMsg.mutable_header()->set_seq(msg.header().seq());
     respMsg.mutable_header()->set_status(0);
 
