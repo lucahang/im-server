@@ -415,6 +415,235 @@ std::vector<im::HistoryMessage> Database::GetMessagesBySession(
     return messages;
 }
 
+void Database::InsertAddFriendReq(
+    const std::string& user_id,
+    const std::string& target_id,
+    const std::string m_msg)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+
+    if (!stmt){
+        throw DBException("mysql_stmt_init failed");
+    }
+
+
+    // RAII自动释放
+    struct StmtGuard{
+        MYSQL_STMT* s;
+        ~StmtGuard(){
+            if (s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+
+
+    std::string sql =
+        "INSERT INTO friend_requests "
+        "(from_user_id, to_user_id, message, status) "
+        "VALUES (?,?,?,?)";
+
+
+
+    // 预处理
+    if (mysql_stmt_prepare(
+            stmt,
+            sql.c_str(),
+            sql.length())){
+
+        std::string err =
+            mysql_stmt_error(stmt);
+
+        throw DBException(
+            "Prepare failed: " + err
+        );
+    }
+
+
+
+    /*
+        参数转换
+
+        MySQL BIGINT
+        |
+        v
+
+        long long
+    */
+
+    long long from_id =
+        std::stoll(user_id);
+    long long to_id =
+        std::stoll(target_id);
+    int status = 0;
+    /*
+        MYSQL_BIND数组
+
+        对应：
+
+        from_user_id ?
+        to_user_id   ?
+        message      ?
+        status       ?
+
+    */
+    MYSQL_BIND bind[4];
+    memset(bind,0,sizeof(bind));
+    // 1. from_user_id
+    bind[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    bind[0].buffer =
+        &from_id;
+    // 2. to_user_id
+    bind[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    bind[1].buffer =
+        &to_id;
+
+
+
+    // 3. message
+
+    bind[2].buffer_type =
+        MYSQL_TYPE_STRING;
+
+    bind[2].buffer =
+        (void*)m_msg.c_str();
+
+    bind[2].buffer_length =
+        m_msg.size();
+
+
+
+    // 4. status
+
+    bind[3].buffer_type =
+        MYSQL_TYPE_LONG;
+
+    bind[3].buffer =
+        &status;
+
+
+
+    /*
+        绑定参数
+    */
+
+    if(mysql_stmt_bind_param(
+            stmt,
+            bind)){
+        std::string err =
+            mysql_stmt_error(stmt);
+
+
+        throw DBException(
+            "Bind failed: " + err
+        );
+    }
+
+
+
+    /*
+        执行SQL
+    */
+
+    if(mysql_stmt_execute(stmt)){
+        std::string err =
+            mysql_stmt_error(stmt);
+
+        throw DBException(
+            "Execute failed: " + err
+        );
+    }
+
+
+
+}
+
+bool Database::ExistFriendRequest(
+    int64_t from,
+    int64_t to)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    MYSQL_STMT* stmt =
+        mysql_stmt_init(conn_);
+    if(!stmt)
+        throw DBException(
+            "mysql_stmt_init failed"
+        );
+    struct StmtGuard{
+        MYSQL_STMT* s;
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+    std::string sql =
+        "SELECT id "
+        "FROM friend_requests "
+        "WHERE from_user_id=? "
+        "AND to_user_id=? "
+        "AND status=0";
+    if(mysql_stmt_prepare(
+        stmt,
+        sql.c_str(),
+        sql.length())){
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    MYSQL_BIND param[2];
+    memset(param,0,sizeof(param));
+    param[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    param[0].buffer =
+        &from;
+    param[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    param[1].buffer =
+        &to;
+    if(mysql_stmt_bind_param(
+        stmt,
+        param)){
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    if(mysql_stmt_execute(stmt)){
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    MYSQL_BIND result[1];
+    memset(result,0,sizeof(result));
+    int64_t id;
+    result[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    result[0].buffer =
+        &id;
+    if(mysql_stmt_bind_result(
+        stmt,
+        result)){
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    /*
+        存在记录:
+        mysql_stmt_fetch返回0
+
+        不存在:
+        MYSQL_NO_DATA
+    */
+    return mysql_stmt_fetch(stmt)==0;
+}
+
 std::vector<im::Contact> Database::GetUserContacts(const std::string& user_id) {
     std::lock_guard<std::mutex> lock(mutex_);
 
@@ -505,4 +734,385 @@ std::vector<im::Contact> Database::GetUserContacts(const std::string& user_id) {
     }
 
     return contacts;
+}
+
+std::vector<im::FriendRequestInfo>
+Database::GetFriendRequests(int64_t user_id)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+
+
+    std::vector<im::FriendRequestInfo> requests;
+
+
+    MYSQL_STMT* stmt =
+        mysql_stmt_init(conn_);
+
+
+    if (!stmt)
+    {
+        throw DBException(
+            "mysql_stmt_init failed"
+        );
+    }
+
+
+
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if (s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+
+
+
+    std::string sql =
+        "SELECT "
+        "id,"
+        "from_user_id,"
+        "to_user_id,"
+        "message,"
+        "status,"
+        "created_at "
+        "FROM friend_requests "
+        "WHERE to_user_id=? "
+        "AND status=0 "
+        "ORDER BY created_at DESC";
+
+
+
+    if(mysql_stmt_prepare(
+        stmt,
+        sql.c_str(),
+        sql.length()))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+    /*
+        绑定查询参数
+
+        WHERE to_user_id=?
+    */
+
+
+    MYSQL_BIND param[1];
+
+    memset(param,0,sizeof(param));
+
+
+    param[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[0].buffer =
+        &user_id;
+
+
+
+    if(mysql_stmt_bind_param(
+        stmt,
+        param))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+
+    if(mysql_stmt_execute(stmt))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+
+    /*
+        接收查询结果
+
+        SELECT:
+
+        id
+        from_user_id
+        to_user_id
+        message
+        status
+        created_at
+
+    */
+
+
+    MYSQL_BIND result[6];
+
+    memset(result,0,sizeof(result));
+
+
+
+    long long request_id;
+
+    long long from_user_id;
+
+    long long to_user_id;
+
+
+    char message[256];
+
+    int status;
+
+
+    char created_at[64];
+
+
+
+    result[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    result[0].buffer =
+        &request_id;
+
+
+
+    result[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    result[1].buffer =
+        &from_user_id;
+
+
+
+    result[2].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    result[2].buffer =
+        &to_user_id;
+
+
+
+    result[3].buffer_type =
+        MYSQL_TYPE_STRING;
+
+    result[3].buffer =
+        message;
+
+    result[3].buffer_length =
+        sizeof(message);
+
+
+
+    result[4].buffer_type =
+        MYSQL_TYPE_LONG;
+
+    result[4].buffer =
+        &status;
+
+
+
+    result[5].buffer_type =
+        MYSQL_TYPE_STRING;
+
+    result[5].buffer =
+        created_at;
+
+    result[5].buffer_length =
+        sizeof(created_at);
+
+
+
+
+
+    if(mysql_stmt_bind_result(
+        stmt,
+        result))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+
+
+    while(mysql_stmt_fetch(stmt)==0)
+    {
+
+        im::FriendRequestInfo req;
+
+
+
+        req.set_request_id(
+            request_id
+        );
+
+
+        /*
+            protobuf里面是string
+
+            MySQL里面是BIGINT
+
+            所以这里转换
+        */
+
+        req.set_from_user_id(
+            std::to_string(from_user_id)
+        );
+
+
+        req.set_to_user_id(
+            std::to_string(to_user_id)
+        );
+
+
+
+        req.set_message(
+            message
+        );
+
+
+
+        req.set_status(
+            status
+        );
+
+
+
+        req.set_created_at(
+            created_at
+        );
+
+
+
+        requests.push_back(
+            std::move(req)
+        );
+
+    }
+
+
+
+    return requests;
+}
+
+bool Database::UpdateRequestStatus(
+    int64_t request_id,
+    int status)
+{
+
+    std::lock_guard<std::mutex> lock(mutex_);
+
+
+
+    MYSQL_STMT* stmt =
+        mysql_stmt_init(conn_);
+
+
+
+    if(!stmt)
+        throw DBException(
+            "stmt init failed"
+        );
+
+
+
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+
+
+
+    std::string sql =
+        "UPDATE friend_requests "
+        "SET status=? "
+        "WHERE id=?";
+
+
+
+    if(mysql_stmt_prepare(
+        stmt,
+        sql.c_str(),
+        sql.length()))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+    MYSQL_BIND param[2];
+
+    memset(param,0,sizeof(param));
+
+
+
+    param[0].buffer_type =
+        MYSQL_TYPE_LONG;
+
+    param[0].buffer =
+        &status;
+
+
+
+
+    param[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[1].buffer =
+        &request_id;
+
+
+
+    if(mysql_stmt_bind_param(
+        stmt,
+        param))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+    if(mysql_stmt_execute(stmt))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+
+
+    /*
+        判断是否更新成功
+
+        affected_rows >0
+    */
+
+
+    return mysql_stmt_affected_rows(stmt)>0;
+
 }

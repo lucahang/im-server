@@ -21,6 +21,8 @@ enum Cmd {
   CMD_GET_CONTACTS_RES   = 15;
   CMD_GET_LOADMORE_HISTORY_REQ = 16;
   CMD_GET_LOADMORE_HISTORY_RES = 17;
+  CMD_ADD_FRIEND_REQ     = 18;
+  CMD_ADD_FRIEND_RES     = 19;
 }
 
 message Contact {
@@ -68,6 +70,35 @@ message LoginResponse {
   int32  status  = 1;
   string user_id = 2;
   string username = 3;   // 确保存在
+}
+
+message AddFriendRequest{
+    string from_user_id = 1;
+    string to_user_id = 2;
+    string message = 3;
+}
+
+
+
+message AddFriendResponse{
+    int32 code = 1;
+    string msg = 2;
+}
+
+//好友申请信息
+message FriendRequestInfo{
+    int64 request_id = 1;
+    string from_user_id = 2;
+    string to_user_id = 3;
+    string message = 4;
+    int32 status = 5;
+    string created_at = 6;
+}
+
+
+//获取申请列表
+message GetFriendRequestsResponse{
+    repeated FriendRequestInfo requests = 1;
 }
 
 message ChatMessage {

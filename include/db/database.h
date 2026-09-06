@@ -46,6 +46,18 @@ public:
                                                         int32_t count);  
                                                         
     std::vector<im::Contact> GetUserContacts(const std::string& user_id);
+
+    void InsertAddFriendReq(const std::string& user_id , const std::string& target_id , const std::string m_msg);
+
+    bool ExistFriendRequest(int64_t from,int64_t to);
+
+    std::vector<im::FriendRequestInfo> GetFriendRequests(int64_t user_id);
+
+    bool UpdateRequestStatus(
+        int64_t request_id,
+        int status
+    );
+
 private:
     void CheckError(int ret, MYSQL_STMT* stmt = nullptr);
     MYSQL* conn_;

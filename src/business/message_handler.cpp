@@ -135,8 +135,19 @@ void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::
 
 void MessageHandler::HandleQuitReq(std::shared_ptr<Connection> conn, const im::Message& msg) {
     std::string user_id=msg.body();
-    spdlog::debug("user_id: {}",user_id);
+    spdlog::info("user_id: {} disconnected",user_id);
     userManager_.RemoveUser(user_id);
+}
+
+void MessageHandler::HandleAddFriendReq(std::shared_ptr<Connection> conn, const im::Message& msg){
+    im::AddFriendRequest addFriRes;
+    if (!addFriRes.ParseFromString(msg.body())) return;
+
+    std::string user_id = addFriRes.from_user_id();
+    std::string target_id = addFriRes.to_user_id();
+    std::string m_msg = addFriRes.message();
+
+    //add the action of insert info into mysql 
 }
 
 void MessageHandler::HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg) {
