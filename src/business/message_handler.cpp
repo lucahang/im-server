@@ -21,6 +21,7 @@ void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Messa
         case im::CMD_SINGLE_MSG:      HandleSingleMsg(conn, msg); break;
         case im::CMD_GROUP_MSG:       HandleGroupMsg(conn, msg); break;
         case im::CMD_GET_HISTORY_REQ: HandleGetHistory(conn, msg); break;
+        case im::CMD_ADD_FRIEND_REQ:  HandleAddFriendReq(conn,msg); break;
         case im::CMD_CLEAR_UNREAD_REQ:HandleClearUnread(conn, msg); break;
         case im::CMD_HEARTBEAT:       HandleHeartbeat(conn, msg); break;
         default: conn->Send(msg); break; // echo
@@ -144,10 +145,43 @@ void MessageHandler::HandleAddFriendReq(std::shared_ptr<Connection> conn, const 
     if (!addFriRes.ParseFromString(msg.body())) return;
 
     std::string user_id = addFriRes.from_user_id();
-    std::string target_id = addFriRes.to_user_id();
+    std::string target_name = addFriRes.to_user_name();
     std::string m_msg = addFriRes.message();
 
-    //add the action of insert info into mysql 
+    //find username id
+    int target_id = -1;
+    std::string db_salt, db_hash;
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_ADD_FRIEND_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+
+    if (db_.GetUserInfo(target_name, db_salt, db_hash, target_id)) {
+        im::AddFriendResponse resp;
+        // 已经发过了FriendRequest
+        if(db_.ExistFriendRequest(std::stoll(user_id), static_cast<long long>(target_id))){
+            resp.set_status(1);
+            respMsg.set_body(resp.SerializeAsString());
+            conn->Send(respMsg);
+            return ;
+        }
+        resp.set_status(0);
+        //spdlog::debug("target_name: {}",target_name);
+        resp.set_msg(target_name);
+        respMsg.set_body(resp.SerializeAsString());
+        db_.InsertAddFriendReq(user_id, std::to_string(target_id), m_msg);
+        conn->Send(respMsg);
+        spdlog::info("user_id-{} successfully sent a friend message to {}",user_id,target_name);
+    }
+    else{
+        respMsg.mutable_header()->set_status(2);
+        im::AddFriendResponse resp;
+        resp.set_status(2);
+        respMsg.set_body(resp.SerializeAsString());
+        conn->Send(respMsg);
+        spdlog::info("there is not user called {}",target_name);
+    }
+    
 }
 
 void MessageHandler::HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg) {

@@ -984,3 +984,104 @@ Shutting down...
 [2026-09-06 06:03:00.161] [info] [thread 5245] Login: 111 (id=2)
 [2026-09-06 06:03:00.178] [info] [thread 5244] userId: 2 request contact lists
 [2026-09-06 06:03:01.611] [info] [thread 5243] user_id: 2 disconnected
+[2026-09-06 09:53:09.265] [info] [thread 5243] 
+Shutting down...
+[2026-09-06 09:53:09.267] [info] [thread 5241] Server exited cleanly.
+[2026-09-06 09:53:11.470] [info] [thread 17324] Server listening on port 9000
+[2026-09-06 09:57:51.153] [info] [thread 17329] Login: 111 (id=2)
+[2026-09-06 09:57:51.167] [info] [thread 17328] userId: 2 request contact lists
+[2026-09-06 09:57:55.476] [debug] [thread 17327] user: 2 sent a request to get history message with peer-1
+[2026-09-06 09:57:56.052] [debug] [thread 17328] user: 2 sent a request to get history message with peer-1
+[2026-09-06 09:58:02.216] [debug] [thread 17329] user: 2 sent a request to get history message with peer-1
+[2026-09-06 09:58:05.765] [info] [thread 17329] user_id: 2 disconnected
+[2026-09-06 10:00:58.106] [info] [thread 17327] Login: 111 (id=2)
+[2026-09-06 10:00:58.123] [info] [thread 17328] userId: 2 request contact lists
+[2026-09-06 10:01:00.770] [debug] [thread 17329] user: 2 sent a request to get history message with peer-1
+[2026-09-06 10:01:47.577] [info] [thread 17328] user_id: 2 disconnected
+[2026-09-06 10:02:24.493] [info] [thread 17329] Login: 111 (id=2)
+[2026-09-06 10:02:24.508] [info] [thread 17328] userId: 2 request contact lists
+[2026-09-06 10:02:26.063] [debug] [thread 17326] user: 2 sent a request to get history message with peer-1
+[2026-09-06 10:02:28.423] [info] [thread 17329] user_id: 2 disconnected
+[2026-09-06 10:09:09.182] [info] [thread 17326] Login: 111 (id=2)
+[2026-09-06 10:09:09.201] [info] [thread 17327] userId: 2 request contact lists
+[2026-09-06 10:09:12.286] [debug] [thread 17328] user: 2 sent a request to get history message with peer-1
+[2026-09-06 10:09:31.340] [info] [thread 17327] user_id: 2 disconnected
+[2026-09-07 13:42:54.255] [info] [thread 10441] Server listening on port 9000
+[2026-09-07 13:44:39.846] [info] [thread 10446] Login: 111 (id=2)
+[2026-09-07 13:44:39.855] [info] [thread 10444] userId: 2 request contact lists
+[2026-09-07 13:45:06.882] [info] [thread 10446] user_id: 2 disconnected
+[2026-09-07 14:09:14.797] [info] [thread 10447] Login: 111 (id=2)
+[2026-09-07 14:09:14.814] [info] [thread 10444] userId: 2 request contact lists
+[2026-09-07 14:14:06.795] [info] [thread 10444] Login: 111 (id=2)
+[2026-09-07 14:14:06.810] [info] [thread 10446] userId: 2 request contact lists
+[2026-09-07 14:14:11.753] [info] [thread 10445] there is not user called 8768
+[2026-09-07 14:14:11.784] [info] [thread 10445] user_id-2 successfully sent a friend message to 8768
+[2026-09-07 14:14:50.132] [info] [thread 10444] user_id-2 successfully sent a friend message to 222
+[2026-09-07 14:19:56.835] [info] [thread 10446] user_id: 2 disconnected
+[2026-09-07 14:19:59.361] [info] [thread 10445] 
+Shutting down...
+[2026-09-07 14:19:59.362] [info] [thread 10441] Server exited cleanly.
+[2026-09-07 14:20:05.901] [info] [thread 14088] Server listening on port 9000
+[2026-09-07 14:22:10.652] [info] [thread 14093] Login: 111 (id=2)
+[2026-09-07 14:22:10.667] [info] [thread 14091] userId: 2 request contact lists
+[2026-09-07 14:22:11.782] [debug] [thread 14091] user: 2 sent a request to get history message with peer-1
+[2026-09-07 14:22:14.761] [info] [thread 14092] there is not user called 12321321
+[2026-09-07 14:22:17.461] [info] [thread 14091] user_id: 2 disconnected
+[2026-09-07 15:21:03.459] [info] [thread 14091] Login: 111 (id=2)
+[2026-09-07 15:21:03.472] [info] [thread 14092] userId: 2 request contact lists
+[2026-09-07 15:21:07.643] [info] [thread 14090] there is not user called fdhdfgh
+[2026-09-07 15:21:17.142] [info] [thread 14091] user_id: 2 disconnected
+[2026-09-07 15:31:46.328] [info] [thread 14092] Login: 111 (id=2)
+[2026-09-07 15:31:46.344] [info] [thread 14090] userId: 2 request contact lists
+[2026-09-07 15:32:03.496] [info] [thread 14092] 
+Shutting down...
+[2026-09-07 15:32:03.498] [info] [thread 14088] Server exited cleanly.
+[2026-09-07 15:41:10.152] [info] [thread 16697] Server listening on port 9000
+[2026-09-07 15:41:15.615] [info] [thread 16702] Login: 111 (id=2)
+[2026-09-07 15:41:15.631] [info] [thread 16699] userId: 2 request contact lists
+[2026-09-07 15:41:20.092] [info] [thread 16702] there is not user called sgsdfgddg
+[2026-09-07 15:41:35.511] [info] [thread 16701] user_id-2 successfully sent a friend message to 111
+[2026-09-07 15:41:41.663] [info] [thread 16699] user_id: 2 disconnected
+[2026-09-08 02:41:32.546] [info] [thread 16701] 
+Shutting down...
+[2026-09-08 02:41:32.547] [info] [thread 16697] Server exited cleanly.
+[2026-09-08 02:43:55.747] [info] [thread 17134] Server listening on port 9000
+[2026-09-08 02:44:04.827] [info] [thread 17136] Login: 111 (id=2)
+[2026-09-08 02:44:04.840] [info] [thread 17139] userId: 2 request contact lists
+[2026-09-08 02:44:39.388] [info] [thread 17137] there is not user called 12314
+[2026-09-08 02:44:42.715] [info] [thread 17138] there is not user called 12314
+[2026-09-08 02:46:04.916] [info] [thread 17136] user_id: 2 disconnected
+[2026-09-08 02:46:21.717] [info] [thread 17136] Login: 111 (id=2)
+[2026-09-08 02:46:21.732] [info] [thread 17138] userId: 2 request contact lists
+[2026-09-08 02:46:25.186] [info] [thread 17136] there is not user called 1111
+[2026-09-08 02:46:36.533] [info] [thread 17138] user_id: 2 disconnected
+[2026-09-08 03:01:21.216] [info] [thread 17138] Login: 111 (id=2)
+[2026-09-08 03:01:21.232] [info] [thread 17139] userId: 2 request contact lists
+[2026-09-08 03:01:36.903] [info] [thread 17138] there is not user called 111111
+[2026-09-08 03:01:55.257] [info] [thread 17138] user_id-2 successfully sent a friend message to 333
+[2026-09-08 03:10:53.971] [info] [thread 17136] user_id: 2 disconnected
+[2026-09-08 03:10:58.388] [info] [thread 17137] Login: 111 (id=2)
+[2026-09-08 03:10:58.404] [info] [thread 17139] userId: 2 request contact lists
+[2026-09-08 03:11:22.576] [info] [thread 17138] user_id-2 successfully sent a friend message to 555
+[2026-09-08 03:14:12.806] [info] [thread 17139] 
+Shutting down...
+[2026-09-08 03:14:12.807] [info] [thread 17134] Server exited cleanly.
+[2026-09-08 03:14:17.858] [info] [thread 20088] Server listening on port 9000
+[2026-09-08 03:14:32.451] [info] [thread 20091] Login: 111 (id=2)
+[2026-09-08 03:14:32.467] [info] [thread 20091] userId: 2 request contact lists
+[2026-09-08 03:14:36.744] [info] [thread 20092] there is not user called 444
+[2026-09-08 03:14:56.366] [debug] [thread 20090] target_name: admin3
+[2026-09-08 03:14:56.377] [info] [thread 20090] user_id-2 successfully sent a friend message to admin3
+[2026-09-08 03:15:09.616] [info] [thread 20093] 
+Shutting down...
+[2026-09-08 03:15:09.616] [info] [thread 20088] Server exited cleanly.
+[2026-09-08 03:27:34.493] [info] [thread 21439] Server listening on port 9000
+[2026-09-08 03:27:40.516] [info] [thread 21442] Login: 111 (id=2)
+[2026-09-08 03:27:40.532] [info] [thread 21444] userId: 2 request contact lists
+[2026-09-08 03:27:48.704] [info] [thread 21441] there is not user called 22
+[2026-09-08 03:27:52.260] [info] [thread 21444] there is not user called 323
+[2026-09-08 03:32:45.134] [info] [thread 21441] there is not user called 44444
+[2026-09-08 03:32:47.191] [info] [thread 21442] there is not user called 44444
+[2026-09-08 03:32:48.876] [info] [thread 21443] there is not user called 44444
+[2026-09-08 03:32:54.200] [info] [thread 21441] there is not user called 44444
+[2026-09-08 03:33:09.324] [info] [thread 21444] user_id: 2 disconnected

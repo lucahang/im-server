@@ -74,14 +74,16 @@ message LoginResponse {
 
 message AddFriendRequest{
     string from_user_id = 1;
-    string to_user_id = 2;
+    string to_user_name = 2;
     string message = 3;
 }
 
 
 
 message AddFriendResponse{
-    int32 code = 1;
+    int32 status = 1;   // 0 mean successfully sent friend request
+                        // 1 mean already sent friend request before
+                        // 2 mean couldn't find user with target_name 
     string msg = 2;
 }
 
