@@ -14,18 +14,44 @@ MessageHandler::MessageHandler(UserManager& userManager, Database& db, MsgManage
 void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Message& msg) {
     int cmd = msg.header().cmd();
     switch (cmd) {
-        case im::CMD_REGISTER_REQ:    HandleRegisterReq(conn, msg); break;
-        case im::CMD_LOGIN_REQ:       HandleLoginReq(conn, msg); break;
-        case im::CMD_GET_CONTACTS_REQ:HandleGetContactsRep(conn, msg); break;
-        case im::CMD_QUIT_REQ:        HandleQuitReq(conn, msg);break; 
-        case im::CMD_SINGLE_MSG:      HandleSingleMsg(conn, msg); break;
-        case im::CMD_GROUP_MSG:       HandleGroupMsg(conn, msg); break;
-        case im::CMD_GET_HISTORY_REQ: HandleGetHistory(conn, msg); break;
-        case im::CMD_ADD_FRIEND_REQ:  HandleAddFriendReq(conn,msg); break;
-        case im::CMD_CLEAR_UNREAD_REQ:HandleClearUnread(conn, msg); break;
-        case im::CMD_HEARTBEAT:       HandleHeartbeat(conn, msg); break;
+        case im::CMD_REGISTER_REQ:       HandleRegisterReq(conn, msg); break;
+        case im::CMD_LOGIN_REQ:          HandleLoginReq(conn, msg); break;
+        case im::CMD_GET_CONTACTS_REQ:   HandleGetContactsRep(conn, msg); break;
+        case im::CMD_QUIT_REQ:           HandleQuitReq(conn, msg);break; 
+        case im::CMD_SINGLE_MSG:         HandleSingleMsg(conn, msg); break;
+        case im::CMD_GROUP_MSG:          HandleGroupMsg(conn, msg); break;
+        case im::CMD_GET_HISTORY_REQ:    HandleGetHistory(conn, msg); break;
+        case im::CMD_ADD_FRIEND_REQ:     HandleAddFriendReq(conn,msg); break;
+        case im::CMD_GET_FRIEND_REQS_REQ:HandleGetFriendReqs(conn,msg); break;
+        case im::CMD_CLEAR_UNREAD_REQ:   HandleClearUnread(conn, msg); break;
+        case im::CMD_HEARTBEAT:          HandleHeartbeat(conn, msg); break;
         default: conn->Send(msg); break; // echo
     }
+}
+
+void MessageHandler::HandleGetFriendReqs(std::shared_ptr<Connection> conn, const im::Message& msg){
+    auto userId = conn->GetUserId();
+    if (!userId) return;
+
+    spdlog::info("userId: {} request friend requests",userId.value());
+    auto friendReqs = db_.GetFriendRequests(std::stoll(userId.value()));
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_GET_FRIEND_REQS_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+    respMsg.mutable_header()->set_status(0);
+
+    im::GetFriendRequestsResponse resp;
+    resp.set_status(0);
+
+    for (auto& fr : friendReqs) {
+        //spdlog::debug("{}",fr.DebugString());
+        *resp.add_requests() = fr;
+    }
+
+    respMsg.set_body(resp.SerializeAsString());
+    conn->Send(respMsg);
+
 }
 
 void MessageHandler::HandleGetContactsRep(std::shared_ptr<Connection> conn, const im::Message& msg) {
@@ -145,6 +171,7 @@ void MessageHandler::HandleAddFriendReq(std::shared_ptr<Connection> conn, const 
     if (!addFriRes.ParseFromString(msg.body())) return;
 
     std::string user_id = addFriRes.from_user_id();
+    std::string from_user_name = addFriRes.from_user_name();
     std::string target_name = addFriRes.to_user_name();
     std::string m_msg = addFriRes.message();
 
@@ -158,6 +185,12 @@ void MessageHandler::HandleAddFriendReq(std::shared_ptr<Connection> conn, const 
 
     if (db_.GetUserInfo(target_name, db_salt, db_hash, target_id)) {
         im::AddFriendResponse resp;
+        if(target_id == std::stoi(user_id)){
+            resp.set_status(3);
+            respMsg.set_body(resp.SerializeAsString());
+            conn->Send(respMsg);
+            return ;
+        }
         // 已经发过了FriendRequest
         if(db_.ExistFriendRequest(std::stoll(user_id), static_cast<long long>(target_id))){
             resp.set_status(1);
@@ -169,7 +202,7 @@ void MessageHandler::HandleAddFriendReq(std::shared_ptr<Connection> conn, const 
         //spdlog::debug("target_name: {}",target_name);
         resp.set_msg(target_name);
         respMsg.set_body(resp.SerializeAsString());
-        db_.InsertAddFriendReq(user_id, std::to_string(target_id), m_msg);
+        db_.InsertAddFriendReq(user_id, std::to_string(target_id), from_user_name, m_msg);
         conn->Send(respMsg);
         spdlog::info("user_id-{} successfully sent a friend message to {}",user_id,target_name);
     }

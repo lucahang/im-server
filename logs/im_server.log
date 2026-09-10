@@ -1085,3 +1085,237 @@ Shutting down...
 [2026-09-08 03:32:48.876] [info] [thread 21443] there is not user called 44444
 [2026-09-08 03:32:54.200] [info] [thread 21441] there is not user called 44444
 [2026-09-08 03:33:09.324] [info] [thread 21444] user_id: 2 disconnected
+[2026-09-08 06:20:06.941] [info] [thread 21443] Login: 111 (id=2)
+[2026-09-08 06:20:06.954] [info] [thread 21441] userId: 2 request contact lists
+[2026-09-08 06:20:16.872] [info] [thread 21443] user_id: 2 disconnected
+[2026-09-08 06:20:51.341] [info] [thread 21443] 
+Shutting down...
+[2026-09-08 06:20:51.342] [info] [thread 21439] Server exited cleanly.
+[2026-09-08 06:20:59.412] [info] [thread 23732] Server listening on port 9000
+[2026-09-08 06:21:03.053] [info] [thread 23736] Login: 111 (id=2)
+[2026-09-08 06:21:03.069] [info] [thread 23735] userId: 2 request contact lists
+[2026-09-08 06:21:13.671] [info] [thread 23736] user_id: 2 disconnected
+[2026-09-08 06:23:15.165] [info] [thread 23737] Login: 111 (id=2)
+[2026-09-08 06:23:15.183] [info] [thread 23735] userId: 2 request contact lists
+[2026-09-08 06:23:43.769] [info] [thread 23736] there is not user called admint
+[2026-09-08 06:23:46.105] [info] [thread 23736] user_id-2 successfully sent a friend message to admin
+[2026-09-08 12:48:53.276] [info] [thread 23737] user_id: 2 disconnected
+[2026-09-08 12:50:42.616] [info] [thread 23735] Login failed (no user): 111
+[2026-09-08 12:50:48.867] [info] [thread 23734] Login failed (no user): 111
+[2026-09-08 12:51:31.183] [info] [thread 23736] Login failed (no user): 111
+[2026-09-08 12:51:53.095] [info] [thread 23735] Login failed (no user): admin
+[2026-09-08 12:51:58.456] [info] [thread 23737] Register admin status: 3
+[2026-09-08 12:52:07.003] [info] [thread 23736] Login failed (no user): admin
+[2026-09-08 12:52:13.938] [info] [thread 23735] Register admin status: 3
+[2026-09-08 12:52:18.507] [info] [thread 23734] Login failed (no user): admin
+[2026-09-08 12:52:20.992] [info] [thread 23736] 
+Shutting down...
+[2026-09-08 12:52:20.994] [info] [thread 23732] Server exited cleanly.
+[2026-09-08 12:52:22.508] [info] [thread 42400] Server listening on port 9000
+[2026-09-08 12:52:26.738] [info] [thread 42405] Login: 111 (id=2)
+[2026-09-08 12:52:26.751] [info] [thread 42406] userId: 2 request contact lists
+[2026-09-08 12:52:28.138] [debug] [thread 42404] user: 2 sent a request to get history message with peer-1
+[2026-09-08 12:58:17.334] [info] [thread 42405] user_id: 2 disconnected
+[2026-09-08 12:58:21.554] [info] [thread 42403] Login: 111 (id=2)
+[2026-09-08 12:58:21.571] [info] [thread 42405] userId: 2 request contact lists
+[2026-09-08 12:58:29.338] [info] [thread 42406] there is not user called asdfsdf
+[2026-09-08 12:58:33.350] [info] [thread 42405] user_id: 2 disconnected
+[2026-09-08 13:01:30.724] [info] [thread 42403] Login: 111 (id=2)
+[2026-09-08 13:01:30.729] [info] [thread 42406] userId: 2 request contact lists
+[2026-09-09 09:49:23.923] [info] [thread 42404] user_id: 2 disconnected
+[2026-09-09 09:49:29.529] [info] [thread 42405] 
+Shutting down...
+[2026-09-09 09:49:29.530] [info] [thread 42400] Server exited cleanly.
+[2026-09-09 09:49:30.357] [info] [thread 54631] Server listening on port 9000
+[2026-09-09 09:49:35.315] [info] [thread 54636] Login: 111 (id=2)
+[2026-09-09 09:49:35.324] [info] [thread 54633] userId: 2 request contact lists
+[2026-09-09 09:49:39.151] [info] [thread 54635] there is not user called k;kjl;
+[2026-09-09 09:49:41.783] [info] [thread 54633] user_id: 2 disconnected
+[2026-09-09 12:03:14.388] [info] [thread 54633] 
+Shutting down...
+[2026-09-09 12:03:14.389] [info] [thread 54631] Server exited cleanly.
+[2026-09-09 12:03:15.499] [info] [thread 60881] Server listening on port 9000
+[2026-09-09 12:03:22.198] [info] [thread 60886] Login: 111 (id=2)
+[2026-09-09 12:03:22.229] [info] [thread 60883] userId: 2 request contact lists
+[2026-09-09 12:04:02.191] [info] [thread 60885] there is not user called asdfsdfasdf
+[2026-09-09 12:11:49.516] [info] [thread 60884] user_id-2 successfully sent a friend message to 555
+[2026-09-09 12:13:43.718] [info] [thread 60883] user_id: 2 disconnected
+[2026-09-10 07:03:41.949] [info] [thread 7127] Server listening on port 9000
+[2026-09-10 07:03:53.658] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 07:03:53.663] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:04:11.491] [info] [thread 7131] Login: 111 (id=2)
+[2026-09-10 07:04:11.508] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 07:04:12.911] [debug] [thread 7131] user: 2 sent a request to get history message with peer-1
+[2026-09-10 07:05:18.844] [info] [thread 7133] Login: 111 (id=2)
+[2026-09-10 07:05:18.860] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:05:56.633] [info] [thread 7132] Login: 111 (id=2)
+[2026-09-10 07:05:56.649] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:06:00.027] [info] [thread 7132] there is not user called sdfsdf
+[2026-09-10 07:06:09.119] [info] [thread 7131] there is not user called aaa
+[2026-09-10 07:06:12.409] [info] [thread 7131] user_id: 2 disconnected
+[2026-09-10 07:08:37.369] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 07:08:37.385] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 07:14:43.349] [info] [thread 7133] Login: 111 (id=2)
+[2026-09-10 07:14:43.370] [info] [thread 7130] userId: 2 request contact lists
+[2026-09-10 07:17:14.857] [info] [thread 7133] Login: 111 (id=2)
+[2026-09-10 07:17:14.872] [info] [thread 7131] userId: 2 request contact lists
+[2026-09-10 07:17:28.168] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 07:17:54.934] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 07:17:54.951] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 07:18:02.880] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 07:19:11.489] [info] [thread 7132] Login: 111 (id=2)
+[2026-09-10 07:19:11.506] [info] [thread 7131] userId: 2 request contact lists
+[2026-09-10 07:19:23.275] [info] [thread 7133] there is not user called sdfdfgsdfg
+[2026-09-10 07:19:29.622] [info] [thread 7133] user_id-2 successfully sent a friend message to 222
+[2026-09-10 07:23:14.559] [info] [thread 7132] user_id: 2 disconnected
+[2026-09-10 07:23:17.973] [info] [thread 7131] Login: 111 (id=2)
+[2026-09-10 07:23:17.988] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:25:19.111] [debug] [thread 7131] user: 2 sent a request to get history message with peer-1
+[2026-09-10 07:34:48.633] [info] [thread 7133] there is not user called dsfsdafsd
+[2026-09-10 07:34:54.829] [info] [thread 7130] there is not user called dsfsdafsd
+[2026-09-10 07:34:59.461] [info] [thread 7131] there is not user called dsfsdafsd
+[2026-09-10 07:35:10.314] [info] [thread 7130] there is not user called dsfsdafsd
+[2026-09-10 07:35:18.607] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 07:39:42.842] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 07:39:42.855] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:39:46.895] [info] [thread 7132] user_id-2 successfully sent a friend message to 333
+[2026-09-10 07:39:51.714] [info] [thread 7133] there is not user called 44444
+[2026-09-10 07:39:53.849] [info] [thread 7130] there is not user called 44444
+[2026-09-10 07:40:03.644] [info] [thread 7132] user_id: 2 disconnected
+[2026-09-10 07:40:48.873] [info] [thread 7131] Login: 111 (id=2)
+[2026-09-10 07:40:48.884] [info] [thread 7130] userId: 2 request contact lists
+[2026-09-10 07:42:14.019] [info] [thread 7132] user_id: 2 disconnected
+[2026-09-10 07:42:19.154] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 07:42:19.158] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 07:45:05.105] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 07:45:14.943] [info] [thread 7131] Login: 111 (id=2)
+[2026-09-10 07:45:14.956] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 07:45:21.276] [info] [thread 7131] user_id: 2 disconnected
+[2026-09-10 07:46:24.741] [info] [thread 7131] Login: 111 (id=2)
+[2026-09-10 07:46:24.755] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 07:46:27.871] [info] [thread 7130] user_id: 2 disconnected
+[2026-09-10 08:36:05.150] [info] [thread 7132] Login: 111 (id=2)
+[2026-09-10 08:36:05.158] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 08:36:09.843] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 08:36:18.842] [info] [thread 7133] Login: admin (id=1)
+[2026-09-10 08:36:18.853] [info] [thread 7130] userId: 1 request contact lists
+[2026-09-10 08:36:21.685] [info] [thread 7131] user_id-1 successfully sent a friend message to 111
+[2026-09-10 08:36:24.898] [info] [thread 7132] user_id: 1 disconnected
+[2026-09-10 08:36:28.212] [info] [thread 7130] Login: 222 (id=3)
+[2026-09-10 08:36:28.226] [info] [thread 7133] userId: 3 request contact lists
+[2026-09-10 08:36:31.104] [info] [thread 7132] user_id-3 successfully sent a friend message to 111
+[2026-09-10 08:36:33.508] [info] [thread 7131] user_id: 3 disconnected
+[2026-09-10 08:36:37.310] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 08:36:37.322] [info] [thread 7133] userId: 2 request contact lists
+[2026-09-10 08:36:41.154] [info] [thread 7133] user_id: 2 disconnected
+[2026-09-10 08:37:48.647] [info] [thread 7130] Login: 111 (id=2)
+[2026-09-10 08:37:48.659] [info] [thread 7132] userId: 2 request contact lists
+[2026-09-10 08:41:16.212] [info] [thread 7130] user_id: 2 disconnected
+[2026-09-10 08:41:20.755] [info] [thread 7133] Login: 111 (id=2)
+[2026-09-10 08:41:20.768] [info] [thread 7131] userId: 2 request contact lists
+[2026-09-10 08:41:25.295] [info] [thread 7131] user_id: 2 disconnected
+[2026-09-10 08:44:24.575] [info] [thread 7132] 
+Shutting down...
+[2026-09-10 08:44:24.578] [info] [thread 7127] Server exited cleanly.
+[2026-09-10 08:44:25.818] [info] [thread 14042] Server listening on port 9000
+[2026-09-10 08:44:33.754] [info] [thread 14047] Login: 111 (id=2)
+[2026-09-10 08:44:33.767] [info] [thread 14044] userId: 2 request contact lists
+[2026-09-10 08:45:50.652] [info] [thread 14098] Server listening on port 9000
+[2026-09-10 08:45:54.250] [info] [thread 14103] Login: 111 (id=2)
+[2026-09-10 08:45:54.260] [info] [thread 14103] userId: 2 request contact lists
+[2026-09-10 08:45:58.604] [info] [thread 14102] there is not user called 11111
+[2026-09-10 08:46:48.743] [info] [thread 14172] Server listening on port 9000
+[2026-09-10 08:46:52.210] [info] [thread 14177] Login: 111 (id=2)
+[2026-09-10 08:46:52.220] [info] [thread 14177] userId: 2 request contact lists
+[2026-09-10 08:51:33.155] [info] [thread 14528] Server listening on port 9000
+[2026-09-10 08:51:37.488] [info] [thread 14532] Login: 111 (id=2)
+[2026-09-10 08:51:37.504] [info] [thread 14530] userId: 2 request contact lists
+[2026-09-10 08:54:18.074] [info] [thread 14766] Server listening on port 9000
+[2026-09-10 08:54:23.627] [info] [thread 14771] Login: 111 (id=2)
+[2026-09-10 08:54:23.641] [info] [thread 14768] userId: 2 request contact lists
+[2026-09-10 08:54:58.003] [info] [thread 14946] Server listening on port 9000
+[2026-09-10 08:55:03.433] [info] [thread 14951] Login: 111 (id=2)
+[2026-09-10 08:55:03.445] [info] [thread 14949] userId: 2 request contact lists
+[2026-09-10 08:56:05.832] [info] [thread 15120] Server listening on port 9000
+[2026-09-10 08:56:11.218] [info] [thread 15124] Login: 111 (id=2)
+[2026-09-10 08:56:11.232] [info] [thread 15122] userId: 2 request contact lists
+[2026-09-10 08:59:51.025] [info] [thread 15988] Server listening on port 9000
+[2026-09-10 08:59:56.002] [info] [thread 15991] Login: 111 (id=2)
+[2026-09-10 08:59:56.016] [info] [thread 15990] userId: 2 request contact lists
+[2026-09-10 09:05:35.697] [info] [thread 16440] Server listening on port 9000
+[2026-09-10 09:05:40.090] [info] [thread 16442] Login: 111 (id=2)
+[2026-09-10 09:05:40.102] [info] [thread 16445] userId: 2 request contact lists
+[2026-09-10 09:05:41.565] [info] [thread 16442] userId: 2 request friend requests
+[2026-09-10 09:06:06.998] [info] [thread 16443] userId: 2 request friend requests
+[2026-09-10 09:07:40.729] [info] [thread 16445] user_id: 2 disconnected
+[2026-09-10 09:07:41.698] [info] [thread 16442] 
+Shutting down...
+[2026-09-10 09:07:41.699] [info] [thread 16440] Server exited cleanly.
+[2026-09-10 09:07:42.277] [info] [thread 16664] Server listening on port 9000
+[2026-09-10 09:07:49.835] [info] [thread 16668] Login: 111 (id=2)
+[2026-09-10 09:07:49.847] [info] [thread 16666] userId: 2 request contact lists
+[2026-09-10 09:07:51.157] [info] [thread 16669] userId: 2 request friend requests
+[2026-09-10 09:07:51.162] [debug] [thread 16669] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+created_at: "2026-09-10 08:36:31.098"
+
+[2026-09-10 09:07:51.163] [debug] [thread 16669] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+created_at: "2026-09-10 08:36:21.676"
+
+[2026-09-10 09:10:34.350] [info] [thread 16668] 
+Shutting down...
+[2026-09-10 09:10:34.350] [info] [thread 16664] Server exited cleanly.
+[2026-09-10 09:10:51.205] [info] [thread 16862] Server listening on port 9000
+[2026-09-10 09:10:57.018] [info] [thread 16865] Login: 111 (id=2)
+[2026-09-10 09:10:57.030] [info] [thread 16866] userId: 2 request contact lists
+[2026-09-10 09:10:58.014] [info] [thread 16866] userId: 2 request friend requests
+[2026-09-10 09:10:58.018] [debug] [thread 16866] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+created_at: "2026-09-10 08:36:31.098"
+sender_name: "222"
+
+[2026-09-10 09:10:58.018] [debug] [thread 16866] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-10 09:20:34.936] [info] [thread 16865] userId: 2 request friend requests
+[2026-09-10 09:20:34.938] [debug] [thread 16865] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+message: "i am your mom"
+created_at: "2026-09-10 08:36:31.098"
+sender_name: "222"
+
+[2026-09-10 09:20:34.938] [debug] [thread 16865] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-10 09:20:46.151] [info] [thread 16864] user_id: 2 disconnected
+                                                                                                                                         [2026-09-10 12:43:59.113] [info] [thread 4039] Server listening on port 9000
+[2026-09-10 12:44:28.181] [info] [thread 4042] Login: 111 (id=2)
+[2026-09-10 12:44:28.186] [info] [thread 4043] userId: 2 request contact lists
+[2026-09-10 12:44:29.778] [info] [thread 4045] userId: 2 request friend requests
+[2026-09-10 12:44:29.781] [debug] [thread 4045] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+message: "i am your mom"
+created_at: "2026-09-10 08:36:31.098"
+sender_name: "222"
+
+[2026-09-10 12:44:29.781] [debug] [thread 4045] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-10 12:44:44.228] [info] [thread 4044] user_id: 2 disconnected

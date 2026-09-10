@@ -1,4 +1,6 @@
 #include "db/database.h"
+#include <spdlog/spdlog.h>
+
 #include <stdexcept>
 #include <cstring>
 
@@ -418,6 +420,7 @@ std::vector<im::HistoryMessage> Database::GetMessagesBySession(
 void Database::InsertAddFriendReq(
     const std::string& user_id,
     const std::string& target_id,
+    const std::string& sender_name,
     const std::string m_msg)
 {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -444,8 +447,8 @@ void Database::InsertAddFriendReq(
 
     std::string sql =
         "INSERT INTO friend_requests "
-        "(from_user_id, to_user_id, message, status) "
-        "VALUES (?,?,?,?)";
+        "(from_user_id, to_user_id, message, status, sender_name) "
+        "VALUES (?,?,?,?,?)";
 
 
 
@@ -491,7 +494,7 @@ void Database::InsertAddFriendReq(
         status       ?
 
     */
-    MYSQL_BIND bind[4];
+    MYSQL_BIND bind[5];
     memset(bind,0,sizeof(bind));
     // 1. from_user_id
     bind[0].buffer_type =
@@ -528,6 +531,14 @@ void Database::InsertAddFriendReq(
         &status;
 
 
+    bind[4].buffer_type =
+    MYSQL_TYPE_STRING;
+
+    bind[4].buffer =
+        (void*)sender_name.c_str();
+
+    bind[4].buffer_length =
+        sender_name.size();
 
     /*
         绑定参数
@@ -737,47 +748,31 @@ std::vector<im::Contact> Database::GetUserContacts(const std::string& user_id) {
 }
 
 std::vector<im::FriendRequestInfo>
-Database::GetFriendRequests(int64_t user_id)
-{
+Database::GetFriendRequests(int64_t user_id){
+
     std::lock_guard<std::mutex> lock(mutex_);
-
-
     std::vector<im::FriendRequestInfo> requests;
-
-
     MYSQL_STMT* stmt =
         mysql_stmt_init(conn_);
-
-
-    if (!stmt)
-    {
+    if (!stmt){
         throw DBException(
             "mysql_stmt_init failed"
         );
     }
-
-
-
-    struct StmtGuard
-    {
+    struct StmtGuard{
         MYSQL_STMT* s;
-
         ~StmtGuard()
         {
             if (s)
                 mysql_stmt_close(s);
         }
-
     } guard{stmt};
-
-
-
-
     std::string sql =
         "SELECT "
         "id,"
         "from_user_id,"
         "to_user_id,"
+        "sender_name,"
         "message,"
         "status,"
         "created_at "
@@ -785,9 +780,6 @@ Database::GetFriendRequests(int64_t user_id)
         "WHERE to_user_id=? "
         "AND status=0 "
         "ORDER BY created_at DESC";
-
-
-
     if(mysql_stmt_prepare(
         stmt,
         sql.c_str(),
@@ -850,6 +842,7 @@ Database::GetFriendRequests(int64_t user_id)
         id
         from_user_id
         to_user_id
+        sender_name
         message
         status
         created_at
@@ -857,7 +850,7 @@ Database::GetFriendRequests(int64_t user_id)
     */
 
 
-    MYSQL_BIND result[6];
+    MYSQL_BIND result[7];
 
     memset(result,0,sizeof(result));
 
@@ -869,6 +862,7 @@ Database::GetFriendRequests(int64_t user_id)
 
     long long to_user_id;
 
+    char sender_name[256];
 
     char message[256];
 
@@ -901,34 +895,41 @@ Database::GetFriendRequests(int64_t user_id)
     result[2].buffer =
         &to_user_id;
 
-
-
     result[3].buffer_type =
         MYSQL_TYPE_STRING;
 
     result[3].buffer =
-        message;
+        &sender_name;
 
     result[3].buffer_length =
+        sizeof(sender_name);
+
+    result[4].buffer_type =
+        MYSQL_TYPE_STRING;
+
+    result[4].buffer =
+        message;
+
+    result[4].buffer_length =
         sizeof(message);
 
 
 
-    result[4].buffer_type =
+    result[5].buffer_type =
         MYSQL_TYPE_LONG;
 
-    result[4].buffer =
+    result[5].buffer =
         &status;
 
 
 
-    result[5].buffer_type =
+    result[6].buffer_type =
         MYSQL_TYPE_STRING;
 
-    result[5].buffer =
+    result[6].buffer =
         created_at;
 
-    result[5].buffer_length =
+    result[6].buffer_length =
         sizeof(created_at);
 
 
@@ -983,7 +984,9 @@ Database::GetFriendRequests(int64_t user_id)
             message
         );
 
-
+        req.set_sender_name(
+            sender_name
+        );
 
         req.set_status(
             status
