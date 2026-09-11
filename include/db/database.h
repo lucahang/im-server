@@ -12,6 +12,8 @@ public:
     Database(const Database&) = delete;
     Database& operator=(const Database&) = delete;
 
+    std::string GetUserName(int64_t user_id);
+
     int RegisterUser(const std::string& username, const std::string& password_hash, const std::string& salt);
     bool GetUserInfo(const std::string& username, std::string& out_salt, std::string& out_hash, int& out_userid);
 
@@ -24,6 +26,9 @@ public:
     void SaveMessage(const im::HistoryMessage& msg,
                      std::string session_id,
                      int32_t msg_type = 0);
+
+    bool InsertFriendship(int64_t user_id, int64_t friend_id,
+                                const std::string& alias, int32_t status);
 
     /**
      * 插入或更新用户会话记录（UPSERT）
@@ -54,7 +59,7 @@ public:
     std::vector<im::FriendRequestInfo> GetFriendRequests(int64_t user_id);
 
     bool UpdateRequestStatus(
-        int64_t request_id,
+        int64_t sender_id, int64_t peer_id,
         int status
     );
 

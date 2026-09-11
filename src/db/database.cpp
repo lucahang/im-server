@@ -1012,26 +1012,15 @@ Database::GetFriendRequests(int64_t user_id){
 }
 
 bool Database::UpdateRequestStatus(
-    int64_t request_id,
-    int status)
-{
-
+    int64_t sender_id, int64_t peer_id,
+    int status){
     std::lock_guard<std::mutex> lock(mutex_);
-
-
-
     MYSQL_STMT* stmt =
         mysql_stmt_init(conn_);
-
-
-
     if(!stmt)
         throw DBException(
             "stmt init failed"
         );
-
-
-
     struct StmtGuard
     {
         MYSQL_STMT* s;
@@ -1050,7 +1039,7 @@ bool Database::UpdateRequestStatus(
     std::string sql =
         "UPDATE friend_requests "
         "SET status=? "
-        "WHERE id=?";
+        "WHERE from_user_id =? AND to_user_id=?";
 
 
 
@@ -1066,7 +1055,7 @@ bool Database::UpdateRequestStatus(
 
 
 
-    MYSQL_BIND param[2];
+    MYSQL_BIND param[3];
 
     memset(param,0,sizeof(param));
 
@@ -1078,16 +1067,16 @@ bool Database::UpdateRequestStatus(
     param[0].buffer =
         &status;
 
-
-
-
     param[1].buffer_type =
         MYSQL_TYPE_LONGLONG;
-
     param[1].buffer =
-        &request_id;
+        &sender_id;
 
+    param[2].buffer_type =
+        MYSQL_TYPE_LONGLONG;
 
+    param[2].buffer =
+        &peer_id;
 
     if(mysql_stmt_bind_param(
         stmt,
@@ -1115,7 +1104,109 @@ bool Database::UpdateRequestStatus(
         affected_rows >0
     */
 
-
+    spdlog::info("change friend request status from {} to {} to {}", sender_id, peer_id, status);
     return mysql_stmt_affected_rows(stmt)>0;
 
+}
+
+std::string Database::GetUserName(int64_t user_id) {
+    const char* sql = "SELECT username FROM users WHERE id = ?";
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt)
+        throw DBException("mysql_stmt_init failed");
+
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+    if (mysql_stmt_prepare(stmt, sql, strlen(sql)) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    MYSQL_BIND param{};
+    param.buffer_type = MYSQL_TYPE_LONGLONG;
+    param.buffer = &user_id;
+
+    if (mysql_stmt_bind_param(stmt, &param) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    if (mysql_stmt_execute(stmt) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    char username[51]{};
+    unsigned long username_length = 0;
+
+    MYSQL_BIND result{};
+    result.buffer_type = MYSQL_TYPE_STRING;
+    result.buffer = username;
+    result.buffer_length = sizeof(username);
+    result.length = &username_length;
+
+    if (mysql_stmt_bind_result(stmt, &result) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    if (mysql_stmt_store_result(stmt) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    if (mysql_stmt_fetch(stmt) == MYSQL_NO_DATA)
+        return "";
+
+    return std::string(username, username_length);
+}
+
+bool Database::InsertFriendship(int64_t user_id, int64_t friend_id,
+                                const std::string& alias, int32_t status) {
+    const char* sql =
+        "INSERT INTO friendship (user_id, friend_id, alias, status) "
+        "VALUES (?, ?, ?, ?)";
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn_);
+    if (!stmt)
+        throw DBException("mysql_stmt_init failed");
+
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+    if (mysql_stmt_prepare(stmt, sql, strlen(sql)) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    MYSQL_BIND bind[4]{};
+
+    bind[0].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[0].buffer = &user_id;
+
+    bind[1].buffer_type = MYSQL_TYPE_LONGLONG;
+    bind[1].buffer = &friend_id;
+
+    bind[2].buffer_type = MYSQL_TYPE_STRING;
+    bind[2].buffer = const_cast<char*>(alias.data());
+    bind[2].buffer_length = alias.size();
+
+    bind[3].buffer_type = MYSQL_TYPE_LONG;
+    bind[3].buffer = &status;
+
+    if (mysql_stmt_bind_param(stmt, bind) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    if (mysql_stmt_execute(stmt) != 0)
+        throw DBException(mysql_stmt_error(stmt));
+
+    return true;
 }

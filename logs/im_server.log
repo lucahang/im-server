@@ -1319,3 +1319,210 @@ created_at: "2026-09-10 08:36:21.676"
 sender_name: "admin"
 
 [2026-09-10 12:44:44.228] [info] [thread 4044] user_id: 2 disconnected
+[2026-09-11 08:22:49.671] [info] [thread 4042] 
+Shutting down...
+[2026-09-11 08:22:49.677] [info] [thread 4039] Server exited cleanly.
+[2026-09-11 08:22:50.551] [info] [thread 16411] Server listening on port 9000
+[2026-09-11 08:22:55.999] [info] [thread 16416] Login: 111 (id=2)
+[2026-09-11 08:22:56.015] [info] [thread 16414] userId: 2 request contact lists
+[2026-09-11 08:22:58.051] [info] [thread 16413] userId: 2 request friend requests
+[2026-09-11 08:22:59.350] [info] [thread 16414] userId: 2 request friend requests
+[2026-09-11 08:23:08.834] [info] [thread 16415] userId: 2 request friend requests
+[2026-09-11 08:23:12.726] [info] [thread 16416] userId: 2 request friend requests
+[2026-09-11 08:25:41.634] [info] [thread 16414] user_id: 2 disconnected
+[2026-09-11 08:25:47.108] [info] [thread 16415] Login: 111 (id=2)
+[2026-09-11 08:25:47.120] [info] [thread 16413] userId: 2 request contact lists
+[2026-09-11 08:26:08.358] [info] [thread 16797] Server listening on port 9000
+[2026-09-11 08:26:14.764] [info] [thread 16800] Login: 111 (id=2)
+[2026-09-11 08:26:14.776] [info] [thread 16799] userId: 2 request contact lists
+[2026-09-11 08:26:16.607] [debug] [thread 16801] user: 2 sent a request to get history message with peer-1
+[2026-09-11 08:26:20.149] [debug] [thread 16799] 2 send a message to 1
+[2026-09-11 08:38:51.904] [info] [thread 17527] Server listening on port 9000
+[2026-09-11 08:38:58.097] [info] [thread 17531] Login: 111 (id=2)
+[2026-09-11 08:38:58.099] [info] [thread 17529] userId: 2 request contact lists
+[2026-09-11 08:38:59.361] [info] [thread 17532] userId: 2 request friend requests
+[2026-09-11 08:45:05.973] [info] [thread 17828] Server listening on port 9000
+[2026-09-11 08:45:13.884] [info] [thread 17833] Login: 111 (id=2)
+[2026-09-11 08:45:13.899] [info] [thread 17830] userId: 2 request contact lists
+[2026-09-11 08:45:15.018] [info] [thread 17832] userId: 2 request friend requests
+[2026-09-11 08:48:22.288] [info] [thread 18015] Server listening on port 9000
+[2026-09-11 08:48:26.801] [info] [thread 18020] Login: 111 (id=2)
+[2026-09-11 08:48:26.813] [info] [thread 18017] userId: 2 request contact lists
+[2026-09-11 08:48:28.095] [info] [thread 18019] userId: 2 request friend requests
+[2026-09-11 08:48:29.049] [debug] [thread 18017] user_id: 2, peer_id:2, status: 1
+[2026-09-11 08:48:29.055] [info] [thread 18017] change friend request status from 2 to 2 to 1
+[2026-09-11 08:48:29.055] [warning] [thread 18017] UpdateRequestStatus(2,2,1) error
+[2026-09-11 08:55:27.526] [info] [thread 18019] 
+Shutting down...
+[2026-09-11 08:55:27.527] [info] [thread 18015] Server exited cleanly.
+[2026-09-11 08:55:29.122] [info] [thread 18400] Server listening on port 9000
+[2026-09-11 08:55:35.343] [info] [thread 18402] Login: 111 (id=2)
+[2026-09-11 08:55:35.357] [info] [thread 18405] userId: 2 request contact lists
+[2026-09-11 08:55:36.738] [info] [thread 18404] userId: 2 request friend requests
+[2026-09-11 08:55:36.743] [debug] [thread 18404] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+message: "i am your mom"
+created_at: "2026-09-10 08:36:31.098"
+sender_name: "222"
+
+[2026-09-11 08:55:36.743] [debug] [thread 18404] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-11 08:57:02.635] [info] [thread 18403] 
+Shutting down...
+[2026-09-11 08:57:02.635] [info] [thread 18400] Server exited cleanly.
+[2026-09-11 08:57:10.892] [info] [thread 18600] Server listening on port 9000
+[2026-09-11 08:57:14.616] [info] [thread 18604] Login: 111 (id=2)
+[2026-09-11 08:57:14.635] [info] [thread 18605] userId: 2 request contact lists
+[2026-09-11 08:57:15.570] [info] [thread 18602] userId: 2 request friend requests
+[2026-09-11 08:57:15.574] [debug] [thread 18602] request_id: 12
+from_user_id: "3"
+to_user_id: "2"
+message: "i am your mom"
+created_at: "2026-09-10 08:36:31.098"
+sender_name: "222"
+
+[2026-09-11 08:57:15.574] [debug] [thread 18602] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-11 08:57:16.630] [debug] [thread 18605] user_id: 2, peer_id:3, status: 1
+[2026-09-11 08:57:16.648] [info] [thread 18605] change friend request status from 3 to 2 to 1
+[2026-09-11 08:57:16.649] [debug] [thread 18605] user_id: 2, peer_id:3, status: 1
+[2026-09-11 08:57:16.660] [debug] [thread 18605] user_id: 2, peer_id:3, status: 1
+[2026-09-11 08:57:16.660] [info] [thread 18605] 2 and 3 are friend now!
+[2026-09-11 08:57:23.816] [info] [thread 18603] user_id: 2 disconnected
+[2026-09-11 08:57:27.455] [info] [thread 18602] Login: 111 (id=2)
+[2026-09-11 08:57:27.467] [info] [thread 18603] userId: 2 request contact lists
+[2026-09-11 08:57:28.762] [info] [thread 18604] userId: 2 request friend requests
+[2026-09-11 08:57:28.763] [debug] [thread 18604] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-11 08:57:30.682] [info] [thread 18605] user_id: 2 disconnected
+[2026-09-11 09:02:43.267] [info] [thread 18605] 
+Shutting down...
+[2026-09-11 09:02:43.268] [info] [thread 18600] Server exited cleanly.
+[2026-09-11 09:18:31.144] [info] [thread 19848] Server listening on port 9000
+[2026-09-11 09:18:35.521] [info] [thread 19852] Login: 111 (id=2)
+[2026-09-11 09:18:35.533] [info] [thread 19850] userId: 2 request contact lists
+[2026-09-11 09:18:36.671] [info] [thread 19850] userId: 2 request friend requests
+[2026-09-11 09:18:36.676] [debug] [thread 19850] request_id: 11
+from_user_id: "1"
+to_user_id: "2"
+message: "i am your dad"
+created_at: "2026-09-10 08:36:21.676"
+sender_name: "admin"
+
+[2026-09-11 09:21:13.437] [info] [thread 20056] Server listening on port 9000
+[2026-09-11 09:21:17.751] [info] [thread 20060] Login: 111 (id=2)
+[2026-09-11 09:21:17.763] [info] [thread 20061] userId: 2 request contact lists
+[2026-09-11 09:21:19.002] [info] [thread 20061] userId: 2 request friend requests
+[2026-09-11 09:21:53.342] [info] [thread 20059] Login: 333 (id=4)
+[2026-09-11 09:21:53.353] [info] [thread 20060] userId: 4 request contact lists
+[2026-09-11 09:21:55.608] [info] [thread 20058] userId: 4 request friend requests
+[2026-09-11 09:22:04.842] [info] [thread 20061] change friend request status from 2 to 4 to 1
+[2026-09-11 09:22:04.857] [info] [thread 20061] 4 and 2 are friend now!
+[2026-09-11 09:22:04.858] [info] [thread 20060] userId: 4 request contact lists
+[2026-09-11 09:22:07.135] [info] [thread 20059] change friend request status from 2 to 4 to 1
+[2026-09-11 09:22:07.135] [warning] [thread 20059] UpdateRequestStatus(2,4,1) error
+[2026-09-11 09:22:07.136] [info] [thread 20058] userId: 4 request contact lists
+[2026-09-11 09:22:14.037] [info] [thread 20061] change friend request status from 2 to 4 to 1
+[2026-09-11 09:22:14.037] [warning] [thread 20061] UpdateRequestStatus(2,4,1) error
+[2026-09-11 09:22:14.037] [info] [thread 20058] userId: 4 request contact lists
+[2026-09-11 09:22:26.224] [info] [thread 20061] change friend request status from 2 to 4 to 2
+[2026-09-11 09:22:29.058] [info] [thread 20059] userId: 4 request friend requests
+[2026-09-11 09:23:33.317] [info] [thread 20058] user_id: 4 disconnected
+[2026-09-11 09:23:37.947] [info] [thread 20059] Login: 555 (id=6)
+[2026-09-11 09:23:37.959] [info] [thread 20058] userId: 6 request contact lists
+[2026-09-11 09:23:40.084] [info] [thread 20061] userId: 6 request friend requests
+[2026-09-11 09:23:42.303] [info] [thread 20058] userId: 2 request friend requests
+[2026-09-11 09:23:49.705] [info] [thread 20061] userId: 6 request friend requests
+[2026-09-11 09:24:05.204] [info] [thread 20058] user_id-6 successfully sent a friend message to 111
+[2026-09-11 09:24:06.888] [info] [thread 20061] userId: 2 request friend requests
+[2026-09-11 09:24:16.597] [info] [thread 20060] change friend request status from 6 to 2 to 1
+[2026-09-11 09:24:16.614] [info] [thread 20060] 2 and 6 are friend now!
+[2026-09-11 09:24:16.614] [info] [thread 20059] userId: 2 request contact lists
+[2026-09-11 09:24:28.403] [debug] [thread 20061] user: 2 sent a request to get history message with peer-6
+[2026-09-11 09:24:28.896] [debug] [thread 20059] user: 2 sent a request to get history message with peer-4
+[2026-09-11 09:24:40.462] [info] [thread 20060] user_id: 6 disconnected
+[2026-09-11 09:24:47.928] [info] [thread 20059] Register 666 status: 0
+[2026-09-11 09:24:50.300] [info] [thread 20058] Login: 666 (id=7)
+[2026-09-11 09:24:50.303] [info] [thread 20058] userId: 7 request contact lists
+[2026-09-11 09:24:52.277] [info] [thread 20059] userId: 7 request friend requests
+[2026-09-11 09:24:53.783] [info] [thread 20060] user_id-7 successfully sent a friend message to 111
+[2026-09-11 09:24:58.019] [info] [thread 20061] userId: 2 request friend requests
+[2026-09-11 09:24:59.840] [info] [thread 20061] change friend request status from 7 to 2 to 1
+[2026-09-11 09:24:59.856] [info] [thread 20061] 2 and 7 are friend now!
+[2026-09-11 09:24:59.857] [info] [thread 20059] userId: 2 request contact lists
+[2026-09-11 09:25:08.841] [debug] [thread 20058] user: 2 sent a request to get history message with peer-7
+[2026-09-11 09:25:09.145] [debug] [thread 20060] user: 2 sent a request to get history message with peer-6
+[2026-09-11 09:25:09.568] [debug] [thread 20059] user: 2 sent a request to get history message with peer-4
+[2026-09-11 09:25:09.937] [debug] [thread 20061] user: 2 sent a request to get history message with peer-3
+[2026-09-11 09:25:10.329] [debug] [thread 20059] user: 2 sent a request to get history message with peer-1
+[2026-09-11 09:25:10.780] [debug] [thread 20060] user: 2 sent a request to get history message with peer-3
+[2026-09-11 09:25:11.468] [debug] [thread 20058] user: 2 sent a request to get history message with peer-4
+[2026-09-11 09:25:11.823] [debug] [thread 20060] user: 2 sent a request to get history message with peer-6
+[2026-09-11 09:25:12.132] [debug] [thread 20058] user: 2 sent a request to get history message with peer-7
+[2026-09-11 09:25:12.490] [debug] [thread 20061] user: 2 sent a request to get history message with peer-6
+[2026-09-11 09:25:12.866] [debug] [thread 20058] user: 2 sent a request to get history message with peer-4
+[2026-09-11 09:25:13.235] [debug] [thread 20059] user: 2 sent a request to get history message with peer-3
+[2026-09-11 09:25:13.657] [debug] [thread 20058] user: 2 sent a request to get history message with peer-3
+[2026-09-11 09:25:14.186] [debug] [thread 20060] user: 2 sent a request to get history message with peer-3
+[2026-09-11 09:25:14.605] [debug] [thread 20058] user: 2 sent a request to get history message with peer-1
+[2026-09-11 09:44:51.647] [info] [thread 20060] user_id: 2 disconnected
+[2026-09-11 09:44:52.434] [info] [thread 20061] 
+Shutting down...
+[2026-09-11 09:44:52.434] [info] [thread 20056] Server exited cleanly.
+[2026-09-11 09:44:54.117] [info] [thread 20727] Server listening on port 9000
+[2026-09-11 09:45:09.263] [info] [thread 20732] Login: 111 (id=2)
+[2026-09-11 09:45:09.276] [info] [thread 20731] userId: 2 request contact lists
+[2026-09-11 09:45:12.658] [info] [thread 20730] Register 666 status: 2
+[2026-09-11 09:45:18.675] [info] [thread 20732] Register 777 status: 0
+[2026-09-11 09:45:19.924] [info] [thread 20730] Login: 777 (id=8)
+[2026-09-11 09:45:19.941] [info] [thread 20731] userId: 8 request contact lists
+[2026-09-11 09:45:21.749] [info] [thread 20732] userId: 8 request friend requests
+[2026-09-11 09:45:24.571] [info] [thread 20729] user_id-8 successfully sent a friend message to 111
+[2026-09-11 09:45:28.788] [info] [thread 20731] userId: 2 request friend requests
+[2026-09-11 09:45:31.336] [info] [thread 20732] change friend request status from 8 to 2 to 1
+[2026-09-11 09:45:31.350] [info] [thread 20732] 2 and 8 are friend now!
+[2026-09-11 09:45:31.352] [info] [thread 20729] userId: 2 request contact lists
+[2026-09-11 09:45:42.076] [info] [thread 20731] userId: 8 request friend requests
+[2026-09-11 09:55:27.979] [info] [thread 20732] user_id: 8 disconnected
+[2026-09-11 09:55:29.029] [info] [thread 20731] user_id: 2 disconnected
+[2026-09-11 09:55:31.443] [info] [thread 20731] 
+Shutting down...
+[2026-09-11 09:55:31.444] [info] [thread 20727] Server exited cleanly.
+[2026-09-11 09:55:31.907] [info] [thread 21352] Server listening on port 9000
+[2026-09-11 09:55:35.763] [info] [thread 21356] Login: 111 (id=2)
+[2026-09-11 09:55:35.775] [info] [thread 21355] userId: 2 request contact lists
+[2026-09-11 09:55:43.721] [info] [thread 21357] Register 888 status: 0
+[2026-09-11 09:55:45.119] [info] [thread 21354] Login: 888 (id=9)
+[2026-09-11 09:55:45.135] [info] [thread 21357] userId: 9 request contact lists
+[2026-09-11 09:55:47.886] [info] [thread 21354] userId: 9 request friend requests
+[2026-09-11 09:55:51.258] [info] [thread 21356] user_id-9 successfully sent a friend message to 111
+[2026-09-11 09:55:54.371] [info] [thread 21357] userId: 2 request friend requests
+[2026-09-11 09:55:58.006] [info] [thread 21355] change friend request status from 9 to 2 to 1
+[2026-09-11 09:55:58.018] [info] [thread 21355] 2 and 9 are friend now!
+[2026-09-11 09:55:58.019] [info] [thread 21357] userId: 2 request contact lists
+[2026-09-11 09:55:58.019] [info] [thread 21356] userId: 2 request friend requests
+[2026-09-11 09:56:02.933] [debug] [thread 21354] user: 2 sent a request to get history message with peer-9
+[2026-09-11 09:56:05.249] [debug] [thread 21356] 2 send a message to 9
+[2026-09-11 09:56:06.503] [debug] [thread 21357] user: 9 sent a request to get history message with peer-2
+[2026-09-11 09:56:09.602] [debug] [thread 21356] 2 send a message to 9
+[2026-09-11 09:56:10.713] [debug] [thread 21354] 2 send a message to 9
+[2026-09-11 09:56:12.117] [debug] [thread 21356] 2 send a message to 9
+[2026-09-11 09:56:35.978] [info] [thread 21357] 
+Shutting down...
+[2026-09-11 09:56:35.979] [info] [thread 21352] Server exited cleanly.

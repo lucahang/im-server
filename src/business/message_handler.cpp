@@ -23,6 +23,7 @@ void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Messa
         case im::CMD_GET_HISTORY_REQ:    HandleGetHistory(conn, msg); break;
         case im::CMD_ADD_FRIEND_REQ:     HandleAddFriendReq(conn,msg); break;
         case im::CMD_GET_FRIEND_REQS_REQ:HandleGetFriendReqs(conn,msg); break;
+        case im::CMD_RESPONE_TO_FRIEND_REQS_REQ: HandleResponeToFriendReqs(conn,msg); break;
         case im::CMD_CLEAR_UNREAD_REQ:   HandleClearUnread(conn, msg); break;
         case im::CMD_HEARTBEAT:          HandleHeartbeat(conn, msg); break;
         default: conn->Send(msg); break; // echo
@@ -111,6 +112,59 @@ void MessageHandler::HandleRegisterReq(std::shared_ptr<Connection> conn, const i
     conn->Send(respMsg);
     // std::cout << "Register " << username << " status: " << status << std::endl;
     spdlog::info("Register {} status: {}",username,status);
+}
+
+void MessageHandler::HandleResponeToFriendReqs(std::shared_ptr<Connection> conn, const im::Message& msg){
+    im::ResponseToFriendReqsReq req;
+    if (!req.ParseFromString(msg.body())) return;
+
+    int64_t user_id = std::stoll(req.user_id());
+    int64_t peer_id = std::stoll(req.peer_id());
+    int32_t status = req.status();
+    //spdlog::debug("user_id: {}, peer_id:{}, status: {}",user_id, peer_id, status);
+    if(db_.UpdateRequestStatus(peer_id, user_id, status)){
+        if(status == 1){
+            std::string username = db_.GetUserName(user_id);
+            std::string peername = db_.GetUserName(peer_id);
+
+            db_.InsertFriendship(peer_id, user_id, username, 1);
+            db_.InsertFriendship(user_id, peer_id, peername, 1);
+
+            spdlog::info("{} and {} are friend now!", user_id, peer_id);
+            std::string peer_id_str = std::to_string(peer_id);
+            if(userManager_.FindUser(peer_id_str)){
+                auto peer=userManager_.GetUser(peer_id_str);
+
+                auto contacts = db_.GetUserContacts(peer_id_str);
+
+                im::Message respMsg;
+                respMsg.mutable_header()->set_cmd(im::CMD_GET_CONTACTS_RES);
+                respMsg.mutable_header()->set_seq(msg.header().seq());
+                respMsg.mutable_header()->set_status(0);
+
+                im::ContactResponse resp;
+                resp.set_status(0);
+                for (auto& c : contacts) {
+                    //spdlog::debug("{}",c.DebugString());
+                    *resp.add_contacts() = c;
+                }
+                respMsg.set_body(resp.SerializeAsString());
+                peer->Send(respMsg);
+            }
+        }
+    }
+    else{
+        spdlog::warn("UpdateRequestStatus({},{},{}) error",peer_id, user_id, status);
+    }
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_RESPONE_TO_FRIEND_REQS_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+    respMsg.mutable_header()->set_status(0);
+    im::ResponseToFriendReqsRes resp;
+    resp.set_status(status);
+    respMsg.set_body(resp.SerializeAsString());
+    conn->Send(respMsg);
 }
 
 void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::Message& msg) {

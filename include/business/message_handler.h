@@ -25,6 +25,7 @@ private:
     void HandleGetFriendReqs(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleClearUnread(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleHeartbeat(std::shared_ptr<Connection> conn, const im::Message& msg);
+    void HandleResponeToFriendReqs(std::shared_ptr<Connection> conn, const im::Message& msg);
 
     UserManager& userManager_;
     Database& db_;
