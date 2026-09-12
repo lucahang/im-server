@@ -20,6 +20,7 @@ private:
     void HandleSingleMsg(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGroupMsg(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGetHistory(std::shared_ptr<Connection> conn, const im::Message& msg);
+    void HandleDeleteFriendReq(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGetContactsRep(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleAddFriendReq(std::shared_ptr<Connection> conn, const im::Message& msg);
     void HandleGetFriendReqs(std::shared_ptr<Connection> conn, const im::Message& msg);

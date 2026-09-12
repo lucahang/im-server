@@ -25,6 +25,7 @@ void MessageHandler::OnMessage(std::shared_ptr<Connection> conn, const im::Messa
         case im::CMD_GET_FRIEND_REQS_REQ:HandleGetFriendReqs(conn,msg); break;
         case im::CMD_RESPONE_TO_FRIEND_REQS_REQ: HandleResponeToFriendReqs(conn,msg); break;
         case im::CMD_CLEAR_UNREAD_REQ:   HandleClearUnread(conn, msg); break;
+        case im::CMD_DELETE_FRIEND_REQ:  HandleDeleteFriendReq(conn, msg); break;
         case im::CMD_HEARTBEAT:          HandleHeartbeat(conn, msg); break;
         default: conn->Send(msg); break; // echo
     }
@@ -165,6 +166,28 @@ void MessageHandler::HandleResponeToFriendReqs(std::shared_ptr<Connection> conn,
     resp.set_status(status);
     respMsg.set_body(resp.SerializeAsString());
     conn->Send(respMsg);
+}
+
+void MessageHandler::HandleDeleteFriendReq(std::shared_ptr<Connection> conn, const im::Message& msg){
+    im::DeleteFriendReq req;
+    if (!req.ParseFromString(msg.body())) return;
+
+    int64_t user_id = std::stoll(*conn->GetUserId());
+    int64_t peer_id = std::stoll(req.peer_id());
+
+    im::Message respMsg;
+    respMsg.mutable_header()->set_cmd(im::CMD_DELETE_FRIEND_RES);
+    respMsg.mutable_header()->set_seq(msg.header().seq());
+
+    im::DeleteFriendRes resp;
+    if(db_.DeleteFriend(user_id, peer_id) && db_.DeleteFriendReqs(user_id, peer_id)){
+        resp.set_status(0);
+    }
+    else{
+        resp.set_status(1);
+    }
+    conn->Send(respMsg);
+
 }
 
 void MessageHandler::HandleLoginReq(std::shared_ptr<Connection> conn, const im::Message& msg) {

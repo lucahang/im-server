@@ -1011,6 +1011,185 @@ Database::GetFriendRequests(int64_t user_id){
     return requests;
 }
 
+bool Database::DeleteFriend(int64_t user_id ,int64_t peer_id){
+    std::lock_guard<std::mutex> lock(mutex_);
+    MYSQL_STMT* stmt =
+        mysql_stmt_init(conn_);
+    if(!stmt)
+        throw DBException(
+            "stmt init failed"
+        );
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+    std::string sql =
+        "DELETE FROM friendship "
+        "WHERE (user_id = ? AND friend_id = ?)" 
+        "OR (user_id = ? AND friend_id = ?)" ;
+
+    if(mysql_stmt_prepare(
+        stmt,
+        sql.c_str(),
+        sql.length()))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+    MYSQL_BIND param[4];
+
+    memset(param,0,sizeof(param));
+
+
+    param[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    param[0].buffer =
+        &user_id;
+
+    param[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[1].buffer =
+        &peer_id;
+    
+    param[2].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[2].buffer =
+        &peer_id;
+
+    param[3].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[3].buffer =
+        &user_id;
+
+    if(mysql_stmt_bind_param(
+        stmt,
+        param))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    if(mysql_stmt_execute(stmt))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+    /*
+        判断是否更新成功
+
+        affected_rows >0
+    */
+
+    spdlog::info("delete friendship between {} and {} in TABLE-friendship", peer_id, user_id);
+    return mysql_stmt_affected_rows(stmt)>0;
+
+}
+
+bool Database::DeleteFriendReqs(int64_t user_id ,int64_t peer_id){
+    std::lock_guard<std::mutex> lock(mutex_);
+    MYSQL_STMT* stmt =
+        mysql_stmt_init(conn_);
+    if(!stmt)
+        throw DBException(
+            "stmt init failed"
+        );
+    struct StmtGuard
+    {
+        MYSQL_STMT* s;
+
+        ~StmtGuard()
+        {
+            if(s)
+                mysql_stmt_close(s);
+        }
+
+    } guard{stmt};
+
+    std::string sql =
+        "DELETE FROM friend_requests "
+        "WHERE (from_user_id = ? AND to_user_id = ?)" 
+        "OR (from_user_id = ? AND to_user_id = ?)" ;
+
+    if(mysql_stmt_prepare(
+        stmt,
+        sql.c_str(),
+        sql.length()))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+    MYSQL_BIND param[4];
+
+    memset(param,0,sizeof(param));
+
+
+    param[0].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+    param[0].buffer =
+        &user_id;
+
+    param[1].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[1].buffer =
+        &peer_id;
+    
+    param[2].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[2].buffer =
+        &peer_id;
+
+    param[3].buffer_type =
+        MYSQL_TYPE_LONGLONG;
+
+    param[3].buffer =
+        &user_id;
+
+    if(mysql_stmt_bind_param(
+        stmt,
+        param))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+    if(mysql_stmt_execute(stmt))
+    {
+        throw DBException(
+            mysql_stmt_error(stmt)
+        );
+    }
+
+    /*
+        判断是否更新成功
+
+        affected_rows >0
+    */
+
+    spdlog::info("delete friend_request between {} and {} in TABLE-friend_request", user_id, peer_id);
+    return mysql_stmt_affected_rows(stmt)>0;
+
+}
+
+
 bool Database::UpdateRequestStatus(
     int64_t sender_id, int64_t peer_id,
     int status){

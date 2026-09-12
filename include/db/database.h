@@ -52,6 +52,10 @@ public:
                                                         
     std::vector<im::Contact> GetUserContacts(const std::string& user_id);
 
+    bool DeleteFriend(int64_t user_id ,int64_t peer_id);
+
+    bool DeleteFriendReqs(int64_t user_id ,int64_t peer_id);
+
     void InsertAddFriendReq(const std::string& user_id , const std::string& target_id , const std::string& sender_name, const std::string m_msg);
 
     bool ExistFriendRequest(int64_t from,int64_t to);

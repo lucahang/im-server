@@ -27,6 +27,8 @@ enum Cmd {
   CMD_GET_FRIEND_REQS_RES= 21;
   CMD_RESPONE_TO_FRIEND_REQS_REQ = 22;
   CMD_RESPONE_TO_FRIEND_REQS_RES = 23;
+  CMD_DELETE_FRIEND_REQ  = 24;
+  CMD_DELETE_FRIEND_RES  = 25;
 }
 
 message Contact {
@@ -103,6 +105,14 @@ message AddFriendResponse{
     string msg = 2;
 }
 
+message DeleteFriendReq{
+  string peer_id = 1;
+}
+
+message DeleteFriendRes{
+  int32 status = 1;
+}
+
 //好友申请信息
 message FriendRequestInfo{
     int64 request_id = 1;
@@ -151,7 +161,7 @@ message HistoryResponse {
 
 message ClearUnreadRequest {
   string peer_id  = 1;
-  bool   is_group = 2;
+  bool is_group = 2;
 }
 
 message ClearUnreadResponse {

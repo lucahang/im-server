@@ -1526,3 +1526,111 @@ Shutting down...
 [2026-09-11 09:56:35.978] [info] [thread 21357] 
 Shutting down...
 [2026-09-11 09:56:35.979] [info] [thread 21352] Server exited cleanly.
+[2026-09-11 09:57:09.745] [info] [thread 21522] Server listening on port 9000
+[2026-09-11 09:57:18.518] [info] [thread 21525] Login: 222 (id=3)
+[2026-09-11 09:57:18.535] [info] [thread 21526] userId: 3 request contact lists
+[2026-09-11 09:57:24.786] [info] [thread 21527] Login: 333 (id=4)
+[2026-09-11 09:57:24.800] [info] [thread 21525] userId: 4 request contact lists
+[2026-09-11 09:57:26.193] [info] [thread 21524] userId: 4 request friend requests
+[2026-09-11 09:57:28.121] [info] [thread 21526] user_id-4 successfully sent a friend message to 222
+[2026-09-11 09:57:30.448] [info] [thread 21525] userId: 3 request friend requests
+[2026-09-11 09:57:33.628] [info] [thread 21526] change friend request status from 2 to 3 to 2
+[2026-09-11 09:57:33.631] [info] [thread 21527] userId: 3 request friend requests
+[2026-09-11 09:57:35.971] [info] [thread 21524] change friend request status from 4 to 3 to 2
+[2026-09-11 09:57:35.972] [info] [thread 21527] userId: 3 request friend requests
+[2026-09-11 09:57:45.944] [info] [thread 21526] user_id: 3 disconnected
+[2026-09-11 09:57:46.646] [info] [thread 21525] user_id: 4 disconnected
+[2026-09-11 12:20:38.219] [info] [thread 21527] 
+Shutting down...
+[2026-09-11 12:20:38.219] [info] [thread 21522] Server exited cleanly.
+[2026-09-12 17:04:05.462] [info] [thread 9058] Server listening on port 9000
+[2026-09-12 17:04:17.238] [info] [thread 9064] Login: 111 (id=2)
+[2026-09-12 17:04:17.249] [info] [thread 9061] userId: 2 request contact lists
+[2026-09-12 17:04:26.995] [debug] [thread 9062] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:04:30.509] [info] [thread 9063] user_id: 2 disconnected
+[2026-09-12 17:32:43.778] [info] [thread 9062] Login: 111 (id=2)
+[2026-09-12 17:32:43.793] [info] [thread 9061] userId: 2 request contact lists
+[2026-09-12 17:32:52.114] [info] [thread 9063] user_id: 2 disconnected
+[2026-09-12 17:32:59.425] [info] [thread 9062] Login: 111 (id=2)
+[2026-09-12 17:32:59.436] [info] [thread 9064] userId: 2 request contact lists
+[2026-09-12 17:33:01.054] [debug] [thread 9061] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:35:47.443] [info] [thread 9063] 
+Shutting down...
+[2026-09-12 17:35:47.444] [info] [thread 9058] Server exited cleanly.
+[2026-09-12 17:35:52.122] [info] [thread 10672] Server listening on port 9000
+[2026-09-12 17:36:01.270] [info] [thread 10674] Login: 111 (id=2)
+[2026-09-12 17:36:01.283] [info] [thread 10676] userId: 2 request contact lists
+[2026-09-12 17:36:05.162] [debug] [thread 10676] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:36:05.955] [debug] [thread 10674] user: 2 sent a request to get history message with peer-4
+[2026-09-12 17:36:06.544] [debug] [thread 10677] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:36:07.716] [info] [thread 10674] user_id: 2 disconnected
+[2026-09-12 17:36:12.667] [info] [thread 10677] Login: 111 (id=2)
+[2026-09-12 17:36:12.683] [info] [thread 10674] userId: 2 request contact lists
+[2026-09-12 17:36:13.619] [debug] [thread 10677] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:36:14.797] [info] [thread 10675] user_id: 2 disconnected
+[2026-09-12 17:38:22.320] [info] [thread 10677] 
+Shutting down...
+[2026-09-12 17:38:22.321] [info] [thread 10672] Server exited cleanly.
+[2026-09-12 17:38:23.346] [info] [thread 11156] Server listening on port 9000
+[2026-09-12 17:38:27.017] [info] [thread 11160] Login: 111 (id=2)
+[2026-09-12 17:38:27.029] [info] [thread 11160] userId: 2 request contact lists
+[2026-09-12 17:38:30.088] [debug] [thread 11161] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:40:00.071] [info] [thread 11378] Server listening on port 9000
+[2026-09-12 17:40:03.646] [info] [thread 11381] Login: 111 (id=2)
+[2026-09-12 17:40:03.672] [info] [thread 11382] userId: 2 request contact lists
+[2026-09-12 17:40:05.817] [debug] [thread 11381] user: 2 sent a request to get history message with peer-3
+[2026-09-12 17:43:11.071] [info] [thread 11620] Server listening on port 9000
+[2026-09-12 17:43:14.921] [info] [thread 11622] Login: 111 (id=2)
+[2026-09-12 17:43:14.933] [info] [thread 11625] userId: 2 request contact lists
+[2026-09-12 17:44:44.448] [info] [thread 11767] Server listening on port 9000
+[2026-09-12 17:44:49.947] [info] [thread 11769] Login: 111 (id=2)
+[2026-09-12 17:44:49.960] [info] [thread 11770] userId: 2 request contact lists
+[2026-09-12 17:44:51.918] [info] [thread 11769] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:44:51.926] [info] [thread 11769] delete friend_request between 2 and 9 in TABLE-friend_request
+[2026-09-12 17:44:56.192] [debug] [thread 11771] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:44:57.352] [debug] [thread 11770] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:03.331] [debug] [thread 11771] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:45:03.847] [debug] [thread 11770] user: 2 sent a request to get history message with peer-7
+[2026-09-12 17:45:04.571] [debug] [thread 11770] user: 2 sent a request to get history message with peer-6
+[2026-09-12 17:45:04.968] [debug] [thread 11771] user: 2 sent a request to get history message with peer-1
+[2026-09-12 17:45:10.148] [info] [thread 11771] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:24.372] [info] [thread 11772] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:25.348] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:26.692] [info] [thread 11770] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:27.228] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:28.379] [info] [thread 11772] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:29.639] [info] [thread 11770] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:30.170] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:31.066] [debug] [thread 11771] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:45:31.589] [debug] [thread 11769] user: 2 sent a request to get history message with peer-7
+[2026-09-12 17:45:32.106] [debug] [thread 11769] user: 2 sent a request to get history message with peer-6
+[2026-09-12 17:45:32.513] [debug] [thread 11772] user: 2 sent a request to get history message with peer-1
+[2026-09-12 17:45:33.161] [debug] [thread 11769] user: 2 sent a request to get history message with peer-6
+[2026-09-12 17:45:33.739] [debug] [thread 11770] user: 2 sent a request to get history message with peer-7
+[2026-09-12 17:45:34.221] [debug] [thread 11770] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:45:34.744] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:35.886] [info] [thread 11771] delete friendship between 9 and 2 in TABLE-friendship
+[2026-09-12 17:45:37.531] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:37.956] [debug] [thread 11771] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:45:38.335] [debug] [thread 11771] user: 2 sent a request to get history message with peer-9
+[2026-09-12 17:45:40.631] [info] [thread 11769] user_id: 2 disconnected
+[2026-09-12 17:45:50.492] [info] [thread 11772] Login: 111 (id=2)
+[2026-09-12 17:45:50.501] [info] [thread 11770] userId: 2 request contact lists
+[2026-09-12 17:45:52.408] [info] [thread 11772] user_id: 2 disconnected
+[2026-09-12 17:49:16.581] [info] [thread 11771] 
+Shutting down...
+[2026-09-12 17:49:16.583] [info] [thread 11767] Server exited cleanly.
+[2026-09-12 17:49:17.109] [info] [thread 12112] Server listening on port 9000
+[2026-09-12 17:49:25.363] [info] [thread 12115] Login: 111 (id=2)
+[2026-09-12 17:49:25.377] [info] [thread 12114] userId: 2 request contact lists
+[2026-09-12 17:49:26.856] [debug] [thread 12117] user: 2 sent a request to get history message with peer-8
+[2026-09-12 17:49:28.345] [info] [thread 12116] delete friendship between 8 and 2 in TABLE-friendship
+[2026-09-12 17:49:28.352] [info] [thread 12116] delete friend_request between 2 and 8 in TABLE-friend_request
+[2026-09-12 17:49:28.353] [info] [thread 12114] userId: 2 request contact lists
+[2026-09-12 17:50:49.591] [info] [thread 12116] user_id: 2 disconnected
+[2026-09-12 17:50:52.532] [info] [thread 12115] Login: 111 (id=2)
+[2026-09-12 17:50:52.545] [info] [thread 12115] userId: 2 request contact lists
+[2026-09-12 17:50:54.517] [info] [thread 12114] delete friendship between 7 and 2 in TABLE-friendship
+[2026-09-12 17:50:54.523] [info] [thread 12114] delete friend_request between 2 and 7 in TABLE-friend_request
+[2026-09-12 17:50:54.525] [info] [thread 12116] userId: 2 request contact lists
+[2026-09-12 17:50:57.008] [info] [thread 12117] user_id: 2 disconnected
