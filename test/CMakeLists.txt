@@ -56,5 +56,24 @@ target_link_libraries(concurrency_test PRIVATE
     Threads::Threads
 )
 
+add_executable(protobuf_im_benchmark
+    benchmark/protobuf_im_benchmark.cpp
+)
+
+target_include_directories(protobuf_im_benchmark PRIVATE
+    ${CMAKE_SOURCE_DIR}/proto
+    ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+target_link_libraries(protobuf_im_benchmark PRIVATE
+    Boost::system
+    Threads::Threads
+    protobuf::libprotobuf
+)
+
+add_executable(benchmark_report
+    benchmark/benchmark_report.cpp
+)
+
 include(GoogleTest)
 gtest_discover_tests(im_server_test)
