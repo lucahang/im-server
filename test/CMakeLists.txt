@@ -29,5 +29,14 @@ target_link_libraries(tcp_benchmark PRIVATE
     Threads::Threads
 )
 
+add_executable(full_im_benchmark
+    benchmark/full_im_benchmark.cpp
+)
+
+target_link_libraries(full_im_benchmark PRIVATE
+    Boost::system
+    Threads::Threads
+)
+
 include(GoogleTest)
 gtest_discover_tests(im_server_test)
