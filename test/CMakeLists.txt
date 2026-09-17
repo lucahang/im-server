@@ -38,5 +38,23 @@ target_link_libraries(full_im_benchmark PRIVATE
     Threads::Threads
 )
 
+add_executable(latency_test
+    benchmark/latency_test.cpp
+)
+
+target_link_libraries(latency_test PRIVATE
+    Boost::system
+    Threads::Threads
+)
+
+add_executable(concurrency_test
+    benchmark/concurrency_test.cpp
+)
+
+target_link_libraries(concurrency_test PRIVATE
+    Boost::system
+    Threads::Threads
+)
+
 include(GoogleTest)
 gtest_discover_tests(im_server_test)
