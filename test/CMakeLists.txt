@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 add_executable(im_server_test
     net/codec_test.cpp
+    net/network_integration_test.cpp
 )
 
 target_include_directories(im_server_test PRIVATE
@@ -14,6 +16,16 @@ target_include_directories(im_server_test PRIVATE
 
 target_link_libraries(im_server_test PRIVATE
     GTest::gtest_main
+    Boost::system
+    Threads::Threads
+)
+
+add_executable(tcp_benchmark
+    benchmark/tcp_benchmark.cpp
+)
+
+target_link_libraries(tcp_benchmark PRIVATE
+    Boost::system
     Threads::Threads
 )
 
