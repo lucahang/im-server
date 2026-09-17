@@ -11,10 +11,11 @@ add_executable(im_server_test
 
 target_include_directories(im_server_test PRIVATE
     ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}
 )
 
 target_link_libraries(im_server_test PRIVATE
+    im_core
     GTest::gtest_main
     Boost::system
     Threads::Threads
@@ -25,6 +26,7 @@ add_executable(tcp_benchmark
 )
 
 target_link_libraries(tcp_benchmark PRIVATE
+    im_core
     Boost::system
     Threads::Threads
 )
@@ -34,6 +36,7 @@ add_executable(full_im_benchmark
 )
 
 target_link_libraries(full_im_benchmark PRIVATE
+    im_core
     Boost::system
     Threads::Threads
 )
@@ -43,6 +46,7 @@ add_executable(latency_test
 )
 
 target_link_libraries(latency_test PRIVATE
+    im_core
     Boost::system
     Threads::Threads
 )
@@ -52,6 +56,7 @@ add_executable(concurrency_test
 )
 
 target_link_libraries(concurrency_test PRIVATE
+    im_core
     Boost::system
     Threads::Threads
 )
@@ -61,14 +66,14 @@ add_executable(protobuf_im_benchmark
 )
 
 target_include_directories(protobuf_im_benchmark PRIVATE
-    ${CMAKE_SOURCE_DIR}/proto
-    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}
 )
 
 target_link_libraries(protobuf_im_benchmark PRIVATE
+    im_core
+    protobuf::libprotobuf
     Boost::system
     Threads::Threads
-    protobuf::libprotobuf
 )
 
 add_executable(benchmark_report
