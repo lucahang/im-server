@@ -20,10 +20,11 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(MYSQL REQUIRED IMPORTED_TARGET mysqlclient)
 find_package(Threads REQUIRED)
 
+# protobuf generate
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/message.proto)
 
-set(SOURCES
-    src/main.cpp
+# core library shared by server and tests
+add_library(im_core STATIC
     src/net/codec.cpp
     src/net/connection.cpp
     src/net/tcp_server.cpp
@@ -35,14 +36,12 @@ set(SOURCES
     ${PROTO_SRCS}
 )
 
-add_executable(im_server ${SOURCES})
-
-target_include_directories(im_server PRIVATE
+target_include_directories(im_core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-target_link_libraries(im_server PRIVATE
+target_link_libraries(im_core PUBLIC
     Boost::system
     spdlog::spdlog
     protobuf::libprotobuf
@@ -51,6 +50,14 @@ target_link_libraries(im_server PRIVATE
     redis++::redis++
     hiredis
     Threads::Threads
+)
+
+add_executable(im_server
+    src/main.cpp
+)
+
+target_link_libraries(im_server PRIVATE
+    im_core
 )
 
 enable_testing()
